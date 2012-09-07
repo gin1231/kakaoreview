@@ -8,3 +8,23 @@
 .brand {
   padding-left: 50px !important;
 }
+#chat_list {
+  list-style: none;
+  li {
+    height: 30px;
+    margin-bottom: 5px;
+    span.name {
+      font-size: 8pt;
+      display: block;
+      margin-bottom: -5px;
+    }
+    span.message {
+      font-size: 11pt;
+      margin-left: 7px;
+    }
+    span.time {
+      font-size: 7pt;
+      margin-left: 5px;
+    }
+  }
+}

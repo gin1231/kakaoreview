@@ -21,7 +21,16 @@
     </div>
     <!-- Navigation bar end -->
 
-    <%= yield %>
+    <div class="row-fluid">
+      <div class="span2">
+        <!-- Sidebar contents -->
+        <%= yield :sidebar %>
+      </div>
+      <div class="span10">
+        <!-- Contents -->
+        <%= yield %>
+      </div>
+    </div>
   </div>
 
 </body>

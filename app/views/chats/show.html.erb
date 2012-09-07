@@ -1,9 +1,16 @@
+<% content_for :sidebar do %>
+  <%= render "sidebar" %>
+<% end %>
 <p id="notice"><%= notice %></p>
 
 <p>
   <b>Title:</b>
   <%= @chat.title %>
 </p>
+
+<div>
+  <%= html_maker(@chat.parse_file).html_safe %>
+</div>
 
 
 <%= link_to 'Edit', edit_chat_path(@chat) %> |

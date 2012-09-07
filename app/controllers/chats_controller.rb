@@ -1,4 +1,5 @@
 class ChatsController < ApplicationController
+  before_filter :set_chats, :only => [:index, :show, :new, :edit]
   # GET /chats
   # GET /chats.json
   def index
@@ -14,6 +15,7 @@ class ChatsController < ApplicationController
   # GET /chats/1.json
   def show
     @chat = Chat.find(params[:id])
+    @chat.parse_file
 
     respond_to do |format|
       format.html # show.html.erb
@@ -80,4 +82,13 @@ class ChatsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def set_chats
+    if user_signed_in?
+      @chats = Chat.all
+    else
+      redirect_to new_user_session_path
+    end
+  end
+
 end
