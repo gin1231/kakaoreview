@@ -9,7 +9,9 @@
 </p>
 
 <div>
-  <%= html_maker(@chat.parse_file).html_safe %>
+  <% if @chat.chatfile? %>
+    <%= html_maker(@chat.parse_file).html_safe %>
+  <% end %>
 </div>
 
 

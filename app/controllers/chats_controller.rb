@@ -14,7 +14,6 @@ class ChatsController < ApplicationController
   # GET /chats/1.json
   def show
     @chat = Chat.find(params[:id])
-    @chat.parse_file
 
     respond_to do |format|
       format.html # show.html.erb
