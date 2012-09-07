@@ -5,18 +5,23 @@ class Chat < ActiveRecord::Base
 
   has_attached_file :chatfile
 
-  MESSAGE = 0
-  INVITATION = 1
-  LEAVE = 2
-  UNKNOWN = 3
-
-  LEFT = 0
-  RIGHT = 1
   def parse_file
     res = []
     f = File.open(self.chatfile.path)
     parsed_date = ""
     f.drop(5).each do |l|
+      if l == "\r\n"
+        next
+      end
+      if l.index('년').nil?
+        # 사용자가 여러줄의 메시지를 보냈을 때
+        res << {:type => MULTILINEMESSAGE, :message => l} 
+        next
+      end
+      if l.index('년') && l.index('') && l.index('') && l.index(',').nil?
+        # 날짜 시간 시스템 메시지 패스
+        next
+      end
       # split datetime and others
       s = l.index(',')
       datetime = l[0..s-1]
