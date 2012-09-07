@@ -3,7 +3,6 @@ class ChatsController < ApplicationController
   # GET /chats
   # GET /chats.json
   def index
-    @chats = Chat.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,6 +42,7 @@ class ChatsController < ApplicationController
   # POST /chats.json
   def create
     @chat = Chat.new(params[:chat])
+    @chat.user = current_user
 
     respond_to do |format|
       if @chat.save
@@ -85,10 +85,13 @@ class ChatsController < ApplicationController
 
   def set_chats
     if user_signed_in?
-      @chats = Chat.all
+      @chats = current_user.chats
     else
       redirect_to new_user_session_path
     end
+  end
+  def set_user
+    
   end
 
 end

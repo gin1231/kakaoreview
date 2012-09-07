@@ -5,6 +5,13 @@ class Chat < ActiveRecord::Base
 
   has_attached_file :chatfile
 
+
+  belongs_to :user, :inverse_of => :chats
+
+  has_and_belongs_to_many :readers, :class_name => "User", :join_table => "users_readable_chats"
+
+
+
   def parse_file
     res = []
     f = File.open(self.chatfile.path)
@@ -18,7 +25,7 @@ class Chat < ActiveRecord::Base
         res << {:type => MULTILINEMESSAGE, :message => l} 
         next
       end
-      if l.index('년') && l.index('') && l.index('') && l.index(',').nil?
+      if l.index('년') && l.index('월') && l.index('일') && l.index(',').nil?
         # 날짜 시간 시스템 메시지 패스
         next
       end
