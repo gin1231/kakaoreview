@@ -9,6 +9,7 @@ gem 'mysql2'
 gem 'thin'
 gem 'rails_admin'
 gem 'devise'
+gem 'paperclip'
 
 
 

@@ -7,8 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container-fluid">
 
-<%= yield %>
+    <!-- Navigation bar -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <%= link_to 'Kakao Review for 잉여=너', root_path, :class => "brand" %>
+        <ul class="nav">
+          <li><%= link_to 'Sign up', '#' %></li>
+          <li><%= link_to 'Login', '#' %></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Navigation bar end -->
+
+    <%= yield %>
+  </div>
 
 </body>
 </html>
