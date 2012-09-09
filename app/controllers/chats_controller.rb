@@ -3,7 +3,6 @@ class ChatsController < ApplicationController
   # GET /chats
   # GET /chats.json
   def index
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @chats }

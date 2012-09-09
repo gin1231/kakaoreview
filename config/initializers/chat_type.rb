@@ -6,3 +6,6 @@ UNKNOWN = 4
 
 LEFT = 0
 RIGHT = 1
+
+ANDROID = 0
+IOS = 1

@@ -14,3 +14,7 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
+
+.rvmrc
+Gemfile.lock
+db/schema.rb
