@@ -16,10 +16,11 @@ development:
   pool: 5
   username: root
   password:
-  socket: /var/run/mysqld.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 # socket for my mac : /tmp/mysql.sock
-# socket for dev : /var/run/mysqld.sock
+# socket for dev : /var/run/mysqld/mysqld.sock
+>>>>>>> f5992d4f4b04c3444a9b3fb4c43d3e54b5b80dfa
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -42,4 +43,4 @@ production:
   pool: 5
   username: root
   password:
-  socket: /var/run/mysqld.sock
+  socket: /var/run/mysqld/mysqld.sock
