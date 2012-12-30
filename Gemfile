@@ -10,7 +10,7 @@ gem 'thin'
 gem 'rails_admin'
 gem 'devise'
 gem 'paperclip'
-
+gem 'mail'
 
 
 # Gems used only for assets and not required

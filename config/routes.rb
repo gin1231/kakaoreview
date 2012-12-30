@@ -4,6 +4,7 @@ Kakaoreview::Application.routes.draw do
   devise_for :users
 
   resources :chats
+	resources :emails
 
   root :to => 'chats#index'
   # The priority is based upon order of creation:
