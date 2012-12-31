@@ -3,7 +3,7 @@ class ChatMailer < ActionMailer::Base
 		attachment = message.attachments.first
 
 		Chat.create do |chat|
-			file = StringIO.new(attachment.decoded)
+			file = StringIO.new(attachment.body.decoded)
 			file.class.class_eval {attr_accessor :original_filename, :content_type}
 			file.original_filename = attachment.filename
 			file.content_type = attachment.mime_type

@@ -1,0 +1,12 @@
+<div class = "chatScreen">
+	<p>
+		<b>Title:</b>
+		<%= @chat.title %>
+	</p>
+
+	<div>
+	<% if @chat.chatfile? %>
+		<%= html_maker(@chat.parse_file).html_safe %>
+	<% end %>
+	</div>
+</div>
