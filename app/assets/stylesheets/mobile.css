@@ -25,44 +25,125 @@ body {
   height:35px;
 }
 
-.chatScreen {
-  background-image:url('/assets/chat_background.png');
-  width:100%;
+.chatContainer {
   position:absolute;
+  width:100%;
   left: 0px;
   top: 0px;
   word-wrap:break-word;
 }
 
-.date {
-  width:100%;
-  text-align:center;
-  background-color: rgba(0,0,0,0.3);
-  font-size:14px;
-  padding:5px 0px;
-  border-radius:10px;
-  color:white;
+.chatContainer p {
+  margin:0px;
+}
+
+/*.chatBackground {*/
+  /*position:fixed;*/
+  /*width:100%;*/
+  /*height:100%;*/
+  /*top:0px;*/
+  /*left:0px;*/
+/*}*/
+
+/*.chatImageBackground {*/
+  /*position:absolute;*/
+  /*top:0px;*/
+  /*left:0px;*/
+  /*background-image:url(chatbg@2x.png);*/
+  /*background-size:320px 400px;*/
+  /*width:100%;*/
+  /*height:200%;*/
+/*}*/
+
+/*.chatColorBackground {*/
+  /*position:absolute;*/
+  /*top:0px;*/
+  /*left:0px;*/
+  /*width:100%;*/
+  /*height:200%;*/
+  /*background-color:#4e76c1;*/
+/*}*/
+
+.chatContainer {
+  background-color:#4e76c1;
+}
+
+.chatScreen {
+  background-image:url(chatbg@2x.png);
+  background-size:320px 400px;
+  background-attachment:fixed;
+
+}
+
+/*.dateContainer {*/
+  /*float:left; */
+  /*width:100%; */
+  /*margin-right:-100px;*/
+/*}*/
+
+/*.dateLeftContainer {*/
+  /*margin-right:110px;*/
+/*}*/
+
+/*.dateLeftCol {*/
+  /*float:left;*/
+  /*width:100px;*/
+  /*display:inline;*/
+/*}*/
+
+/*.date {*/
+  /*width:100%;*/
+  /*text-align:center;*/
+  /*background-color: rgba(0,0,0,0.3);*/
+  /*font-size:14px;*/
+  /*padding:5px 0px;*/
+  /*border-radius:13px;*/
+  /*color:white;*/
+  /*margin-left:110px;*/
+/*}*/
+
+/*.dateRightCol {*/
+  /*float:right;*/
+  /*width:100px;*/
+/*}*/
+
+.messageContainer {
+  overflow:auto;
 }
 
 .messageDiv {
-  width:100%;
-  display:block;
-  overflow:auto;
-  padding:-10px;
-  position:relative;
+  max-width:67%;
+}
+
+.messageDiv.isMine{
+  float:right;
+}
+
+.messageDiv.isNotMine {
+  float:left;
 }
 
 .message{
-  max-width:63%;
   font-size:15px;
 }
 
+.time {
+  text-align:center;
+  width:110px;
+  height:16px;
+  background-color: rgba(0,0,0,0.3);
+  color:white;
+  font-size:11px;
+  border-radius:8px;
+  line-height:16px;
+}
+
+
 .isNotMine .message{
   position:relative;
-  float:left;
   z-index: 9;
   padding:12px 10px 12px 15px;
-  margin:10px;
+  margin-left:10px;
 }
 
 .isNotMine .message::before {
@@ -83,28 +164,28 @@ body {
 }
 
 .isNotMine .name {
-  margin:5px 10px 0px 8px;
+  margin:10px 10px -3px 18px;
+  font-size:17px;
+  text-shadow: 0px -1px gray;
 }
 
 .isNotMine .time {
-  background-color: rgba(0,0,0,0.3);
-  color:white;
-  font-size:13px;
+  float:right;
+  margin-top:-28px;
+  margin-right:-78px;
 }
 
 .isMine .time {
-  background-color: rgba(0,0,0,0.3);
-  color:white;
-  font-size:13px;
+  float:left;
+  margin-top:-28px;
+  margin-left:-78px;
 }
 
 .isMine .message{
   position:relative;
-  float:right;
   z-index: 9;
+  padding:11px 13px 12px 14px;
   margin-right:10px;
-  padding:13px 13px 12px 16px;
-  margin:10px;
 }
 
 .isMine .message::before {

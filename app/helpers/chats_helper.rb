@@ -13,23 +13,33 @@ module ChatsHelper
         className = "messageDiv isMine"
       end
         
-      html << '<div class = "' + className + '">'
+      html << '<div class = "messageContainer"><div class = "' + className + '">'
       case m[:type]
       when MESSAGE
         unless m[:date].nil?
-          html << '<div class="date">'+ date_parser(m[:date]) +'</div>'
+          html << 
+          '<div class = "dateContainer">
+            <div class = "dateLeftContainer">
+                <div class = "dateLeftCol">
+                </div>
+                <div class = "date"> '+ date_parser(m[:date]) + 
+              '</div>
+                </div>  
+                </div>
+                <div class = "dateRightCol">
+                </div>'
         end
         if m[:name] == "회원님"
-          html << '<span class="message">'+m[:message]+'</span><div class="time">'+m[:time]+'</div>'
+          html << '<div class="message">'+m[:message]+'</div><div class="time">'+m[:time]+'</div>'
         else
-          html << '<div class="name">'+m[:name]+'</div>'+'<span class="message">'+m[:message]+'</span><div class="time">'+m[:time]+'</div>'
+          html << '<div class="name">'+m[:name]+'</div>'+'<div class="message">'+m[:message]+'</div><div class="time">'+m[:time]+'</div>'
         end
       when INVITATION
         html << '<li class="invitation">'+m[:message]+'<span class="time">'+m[:time]+'</span></li>'
       when MULTILINEMESSAGE
         html << '<li class = "mlMessage">'+m[:message]+'</li>'
       end
-      html << '</div>'
+      html << '</div></div>'
     end
     html << "</div>"
     html
