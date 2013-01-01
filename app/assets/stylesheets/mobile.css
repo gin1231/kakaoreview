@@ -75,37 +75,42 @@ body {
 
 }
 
-/*.dateContainer {*/
-  /*float:left; */
-  /*width:100%; */
-  /*margin-right:-100px;*/
-/*}*/
+.dateContainer {
+  overflow:auto;
+  margin:5px 0px;
+}
 
-/*.dateLeftContainer {*/
-  /*margin-right:110px;*/
-/*}*/
+.dateInnerContainer {
+  float:left;
+  width:100%;
+  margin-right:-5px;
+}
 
-/*.dateLeftCol {*/
-  /*float:left;*/
-  /*width:100px;*/
-  /*display:inline;*/
-/*}*/
+.dateLeftContainer {
+  margin-right:10px;
+}
 
-/*.date {*/
-  /*width:100%;*/
-  /*text-align:center;*/
-  /*background-color: rgba(0,0,0,0.3);*/
-  /*font-size:14px;*/
-  /*padding:5px 0px;*/
-  /*border-radius:13px;*/
-  /*color:white;*/
-  /*margin-left:110px;*/
-/*}*/
+.dateLeftCol {
+  float:left;
+  width:5px;
+  display:inline;
+}
 
-/*.dateRightCol {*/
-  /*float:right;*/
-  /*width:100px;*/
-/*}*/
+.date {
+  width:100%;
+  text-align:center;
+  background-color: rgba(0,0,0,0.3);
+  font-size:12px;
+  padding:5px 0px;
+  border-radius:13px;
+  color:white;
+  margin-left:5px;
+}
+
+.dateRightCol {
+  float:right;
+  width:5px;
+}
 
 .messageContainer {
   overflow:auto;

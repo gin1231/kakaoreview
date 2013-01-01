@@ -13,22 +13,27 @@ module ChatsHelper
         className = "messageDiv isMine"
       end
         
-      html << '<div class = "messageContainer"><div class = "' + className + '">'
       case m[:type]
+      
+      
       when MESSAGE
         unless m[:date].nil?
-          html << 
-          '<div class = "dateContainer">
-            <div class = "dateLeftContainer">
-                <div class = "dateLeftCol">
-                </div>
-                <div class = "date"> '+ date_parser(m[:date]) + 
-              '</div>
-                </div>  
-                </div>
-                <div class = "dateRightCol">
-                </div>'
+          html << '
+                    <div class = "dateContainer">
+                      <div class = "dateInnerContainer">
+                        <div class = "dateLeftContainer">
+                          <div class = "dateLeftCol">
+                          </div>
+                          <div class = "date">' + date_parser(m[:date]) + '
+                          </div>
+                        </div>
+                      </div>
+                      <div class = "dateRightCol">
+                      </div>
+                    </div>
+                  '
         end
+        html << '<div class = "messageContainer"><div class = "' + className + '">'
         if m[:name] == "회원님"
           html << '<div class="message">'+m[:message]+'</div><div class="time">'+m[:time]+'</div>'
         else
