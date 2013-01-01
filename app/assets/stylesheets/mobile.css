@@ -42,8 +42,10 @@ body {
 }
 
 .emoticon img{
-  width:18px;
+  width:21px;
   height:auto;
+  vertical-align:text-top;
+  margin-top:-2px;
 }
 /*.chatBackground {*/
   /*position:fixed;*/
@@ -84,7 +86,7 @@ body {
 }
 
 .dateContainer {
-  overflow:auto;
+  overflow:hidden;
   margin:5px 0px;
 }
 
@@ -121,7 +123,7 @@ body {
 }
 
 .messageContainer {
-  overflow:auto;
+  overflow:hidden;
 }
 
 .messageDiv {
@@ -171,9 +173,10 @@ body {
   left: 0px;
   border-width: 13px 15px 16px 17px;
   border-image: url(pop_white.png) 13 15 16 17 fill repeat;
-  -moz-border-image: url(pop_white.png) 13 15 16 17 repeat;
-  -webkit-border-image: -webkit-image-set(url(pop_white.png) 1x, url(pop_white@2x.png) 2x) 13 15 16 17 repeat;
-  -o-border-image: url(pop_white.png) 13 15 16 17 repeat;
+  -moz-border-image: url(pop_white.png) 13 15 16 17 fill repeat;
+  -webkit-border-image: -webkit-image-set(url(pop_white.png) 1x, url(pop_white@2x.png) 2x) 13 15 16 17 fill repeat;
+  -o-border-image: url(pop_white.png) 13 15 16 17 fill repeat;
+  border-style: solid;
 }
 
 .isNotMine .name {
@@ -215,9 +218,10 @@ body {
   
   border-width: 13px 18px 15px 15px;
   border-image: url(pop_yellow.png) 13 18 15 15 fill repeat;
-  -moz-border-image: url(pop_yellow.png) 13 18 15 15 repeat;
-  -webkit-border-image: -webkit-image-set(url(pop_yellow.png) 1x, url(pop_yellow@2x.png) 2x) 13 18 15 15 repeat;
-  -o-border-image: url(pop_yellow.png) 13 18 15 15 repeat;
+  -moz-border-image: url(pop_yellow.png) 13 18 15 15 fill repeat;
+  -webkit-border-image: -webkit-image-set(url(pop_yellow.png) 1x, url(pop_yellow@2x.png) 2x) 13 18 15 15 fill repeat;
+  -o-border-image: url(pop_yellow.png) 13 18 15 15 fill repeat;
+  border-style: solid;
 }
 
 
