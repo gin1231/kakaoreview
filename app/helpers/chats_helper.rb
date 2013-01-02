@@ -18,33 +18,40 @@ module ChatsHelper
       
       when MESSAGE
         unless m[:date].nil?
-          html << '
-                    <div class = "dateContainer">
-                      <div class = "dateInnerContainer">
-                        <div class = "dateLeftContainer">
-                          <div class = "dateLeftCol">
-                          </div>
-                          <div class = "date">' + date_parser(m[:date]) + '
-                          </div>
+          html << "
+                    <div class = 'dateContainer'>
+                      <div class = 'dateInnerContainer'>
+                        <div class = 'dateLeftContainer'>
+                          <div class = 'dateLeftCol'></div>
+                          <div class = 'date'> #{date_parser(m[:date])} </div>
                         </div>
                       </div>
-                      <div class = "dateRightCol">
-                      </div>
+                      <div class = 'dateRightCol'></div>
                     </div>
-                  '
+                  "
         end
-        html << '<div class = "messageContainer"><div class = "' + className + '">'
+        html << "<div class = 'messageContainer'><div class = '#{className}'>"
         if m[:name] == "회원님"
-          html << '<div class="message">'+m[:message]+'</div><div class="time">'+m[:time]+'</div>'
+          html << "<div class = 'message'> #{m[:message]} </div><div class = 'time'>#{m[:time]}</div>"
         else
-          html << '<div class="name">'+m[:name]+'</div>'+'<div class="message">'+m[:message]+'</div><div class="time">'+m[:time]+'</div>'
+          html << "
+          <div class = 'profilePicContainer'>
+            <div class = 'profilePic'>
+            </div>
+          </div>
+          <div class = 'rightPart'>
+            <div class = 'name'> #{m[:name]} </div>
+            <div class = 'message'> #{m[:message]} </div>
+            <div class = 'time'> #{m[:time]} </div>
+          </div>
+          "
         end
       when INVITATION
-        html << '<li class="invitation">'+m[:message]+'<span class="time">'+m[:time]+'</span></li>'
+        html << "<li class = 'invitation'> #{m[:message]} <span class = 'time'>#{m[:time]}</span></li>"
       when MULTILINEMESSAGE
-        html << '<li class = "mlMessage">'+m[:message]+'</li>'
+        html << "<li class = 'mlMessage'>#{m[:message]}</li>"
       end
-      html << '</div></div>'
+      html << "</div></div>"
     end
     html << "</div>"
     html
