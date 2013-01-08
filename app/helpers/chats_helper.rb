@@ -58,6 +58,7 @@ module ChatsHelper
   end
 
   def date_parser(date)
+    return date#temp for test
     newDate = Date.parse(date)
     day = case newDate.wday
       when 0 then "일요일"
