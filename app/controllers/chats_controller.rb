@@ -1,5 +1,22 @@
 class ChatsController < ApplicationController
+  layout 'frame'
+
   before_filter :set_chats, :only => [:index, :show, :new, :edit]
+
+  private
+  def set_chats
+    if user_signed_in?
+      @chats = current_user.chats
+    else
+      redirect_to new_user_session_path
+    end
+  end
+
+  def set_user
+    
+  end
+
+  public
   # GET /chats
   # GET /chats.json
   def index
@@ -80,16 +97,4 @@ class ChatsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  def set_chats
-    if user_signed_in?
-      @chats = current_user.chats
-    else
-      redirect_to new_user_session_path
-    end
-  end
-  def set_user
-    
-  end
-
 end

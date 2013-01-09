@@ -1,4 +1,6 @@
 class QuotesController < ApplicationController
+  layout 'frame'
+
   def index
 
   end

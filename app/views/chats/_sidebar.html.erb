@@ -1,21 +1,11 @@
-<table>
-  <tr>
-    <th>Title</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<ul class="nav nav-list">
+  <li class="nav-header">CHAT LIST</li>
+  <% @chats.each do |chat| %>
+  <li><%= link_to chat.title, chat %></li>
+  <% end %>
+  <li class="divider"></li>
+</ul>
 
-<% @chats.each do |chat| %>
-  <tr>
-    <td><%= chat.title %></td>
-    <td><%= link_to 'Show', chat %></td>
-    <td><%= link_to 'Edit', edit_chat_path(chat) %></td>
-    <td><%= link_to 'Destroy', chat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Chat', new_chat_path %>
+<div>
+  <%= link_to 'New Chat', new_chat_path, :class => 'btn btn-large btn-block' %>
+</div>

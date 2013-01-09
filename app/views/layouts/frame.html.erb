@@ -31,7 +31,13 @@
     <!-- Navigation bar end -->
 
     <div class="row-fluid">
-      <div id="content_box" class="offset1 span10">
+      <div class="span2">
+        <!-- Sidebar contents -->
+        <div class="well">
+        <%= render :partial => 'sidebar' %>
+        </div>
+      </div>
+      <div id="content_box" class="span10">
         <!-- Contents -->
         <%= yield %>
       </div>

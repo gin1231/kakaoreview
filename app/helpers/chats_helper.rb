@@ -46,12 +46,13 @@ module ChatsHelper
           </div>
           "
         end
+        html << "</div></div>"
       when INVITATION
         html << "<li class = 'invitation'> #{m[:message]} <span class = 'time'>#{m[:time]}</span></li>"
       when MULTILINEMESSAGE
         html << "<li class = 'mlMessage'>#{m[:message]}</li>"
       end
-      html << "</div></div>"
+
     end
     html << "</div>"
     html
