@@ -7,7 +7,7 @@ class Chat < ActiveRecord::Base
 
 
   belongs_to :user, :inverse_of => :chats
-
+  has_many :messages
   has_and_belongs_to_many :readers, :class_name => "User", :join_table => "users_readable_chats"
 
   def parse_android(f)
