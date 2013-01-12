@@ -47,35 +47,6 @@ body {
   vertical-align:middle;
   margin-top:-4px;
 }
-/*.chatBackground {*/
-  /*position:fixed;*/
-  /*width:100%;*/
-  /*height:100%;*/
-  /*top:0px;*/
-  /*left:0px;*/
-/*}*/
-
-/*.chatImageBackground {*/
-  /*position:absolute;*/
-  /*top:0px;*/
-  /*left:0px;*/
-  /*background-image:url(chatbg@2x.png);*/
-  /*background-size:320px 400px;*/
-  /*width:100%;*/
-  /*height:200%;*/
-/*}*/
-
-/*.chatColorBackground {*/
-  /*position:absolute;*/
-  /*top:0px;*/
-  /*left:0px;*/
-  /*width:100%;*/
-  /*height:200%;*/
-  /*background-color:#4e76c1;*/
-/*}*/
-
-.messageAndTime {
-}
 
 .chatContainer {
   background-color:#4e76c1;
@@ -85,7 +56,6 @@ body {
   background-image:url(chatbg@2x.png);
   background-size:320px 400px;
   background-attachment:fixed;
-
 }
 
 .dateContainer {
@@ -125,37 +95,66 @@ body {
   width:5px;
 }
 
+.invitationContainer {
+  overflow:hidden;
+  margin:5px 0px;
+}
+
+.invitationInnerContainer {
+  float:left;
+  width:100%;
+  margin-right:-5px;
+}
+
+.invitationLeftContainer {
+  margin-right:10px;
+}
+
+.invitationLeftCol {
+  float:left;
+  width:5px;
+  display:inline;
+}
+
+.invitation {
+  width:100%;
+  text-align:center;
+  background-color: rgba(0,0,0,0.3);
+  font-size:12px;
+  padding:5px 0px;
+  border-radius:13px;
+  color:white;
+  margin-left:5px;
+}
+
+.invitationRightCol {
+  float:right;
+  width:5px;
+}
+
 .messageContainer {
   overflow:hidden;
 }
 
 .messageDiv.isMine {
-  max-width:67%;
-}
-
-.messageDiv.isNotMine {
-  max-width:67%;
-  display: inline;
-}
-
-.messageDiv.isMine{
+  max-width:65%;
   float:right;
 }
 
 .messageDiv.isNotMine {
+  max-width:74%;
   float:left;
 }
-
 
 .profilePicContainer {
   width:32px;
   height:33px;
   float:left;
   background-color: white;
-  margin-left:5px;
+  margin-left:4px;
   margin-top:2px;
   border-radius:2px;
-  box-shadow:0px 1px 1px black;
+  box-shadow:0px 1px 1px gray;
 
 }
 
@@ -167,42 +166,42 @@ body {
   margin-left:1px;
   margin-top:1px;
   border-radius:2px;
-  box-shadow:0px 1px 1px black;
-
+  box-shadow:0px 1px 1px gray;
+  background-image:url(profileDefault.png);
+  background-size:30px 30px;
 }
 
 .name {
+  margin:2px -10000px -6px 12px;
   font-size:15px;
   text-shadow: 0px -1px gray;
 }
 
-
 .rightPart {
-  position:relative;
-  margin-left:40px;
+  margin-left:33px;
 }
 
 .message{
-  font-size:14px;
+  font-size:14.5px;
   margin-bottom: 2px;
+  line-height:130%;
 }
 
 .time {
-  width:90px;
-  height:16px;
+  width:71px;
+  height:15px;
   background-color: rgba(0,0,0,0.3);
   color:white;
-  font-size:11px;
+  font-size:10px;
   border-radius:8px;
-  line-height:17px;
+  line-height:16px;
 }
 
 .isNotMine .message{
   position:relative;
   z-index: 9;
-  padding:12px 13px 12px 15px;
-  top: -4px;
-  left: 5px;
+  padding:11px 13px 12px 14px;
+  margin-left:4px;
 }
 
 .isNotMine .message::before {
@@ -221,23 +220,25 @@ body {
   -webkit-border-image: -webkit-image-set(url(pop_white.png) 1x, url(pop_white@2x.png) 2x) 13 15 16 17 fill repeat;
   -o-border-image: url(pop_white.png) 13 15 16 17 fill repeat;
   border-style: solid;
-  display: inline-block;
 }
 
+
 .isNotMine .time {
-  text-indent: 15px;
-  float: right;
+  float:right;
+  margin-top:-30px;
+  margin-right:-71px;
+  padding-left:15px;
 }
 
 .isMine .time {
-  text-indent: 30px;
-  float:right;
-  margin-top:17px;
-  margin-right:-13px;
+  float:left;
+  margin-top:-30px;
+  margin-left:-71px;
+  padding-right:15px;
+  text-align:right;
 }
 
 .isMine .message{
-  float: right;
   position:relative;
   z-index: 9;
   padding:11px 13px 12px 14px;

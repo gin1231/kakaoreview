@@ -41,16 +41,24 @@ module ChatsHelper
           </div>
           <div class = 'rightPart'>
             <div class = 'name'> #{m[:name]} </div>
-            <div class = 'messageAndTime'>
-              <div class = 'message'> #{m[:message]} </div>
-              <div class = 'time'> #{m[:time]} </div>
-            </div>
+            <div class = 'message'> #{m[:message]} </div>
+            <div class = 'time'> #{m[:time]} </div>
           </div>
           "
         end
         html << "</div></div>"
       when INVITATION
-        html << "<li class = 'invitation'> #{m[:message]} <span class = 'time'>#{m[:time]}</span></li>"
+        html << "
+                  <div class = 'invitationContainer'>
+                    <div class = 'invitationInnerContainer'>
+                      <div class = 'invitationLeftContainer'>
+                        <div class = 'invitationLeftCol'></div>
+                        <div class = 'invitation'> #{m[:message]} </div>
+                      </div>
+                    </div>
+                    <div class = 'invitationRightCol'></div>
+                  </div>
+                "
       when MULTILINEMESSAGE
         html << "<li class = 'mlMessage'>#{m[:message]}</li>"
       end
