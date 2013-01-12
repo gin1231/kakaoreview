@@ -1,12 +1,42 @@
 <h1>대화 올리기</h1>
- - 파일로 올리기
-<%= render 'form' %>
 
- - 메일로 올리기
- <div>Explanation here</div>
+<h3>파일로 올리기</h3>
+<div>
+  <%= form_for(@chat) do |f| %>
+  <% if @chat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chat.errors.count, "error") %> prohibited this chat from being saved:</h2>
+
+      <ul>
+      <% @chat.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :chatfile %><br />
+    <%= f.file_field :chatfile %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>
+</div>
+
+<h3>메일로 올리기</h3>
+<div>
+  USERNAME@DOMAIN.COM
+</div>
 
 <h1>대화 만들기</h1>
-
-  <div>form here</div>
+<div>
+  FORM HERE
+</div>
 
 <%= link_to 'Back', chats_path %>
