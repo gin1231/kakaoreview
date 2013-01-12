@@ -41,8 +41,10 @@ module ChatsHelper
           </div>
           <div class = 'rightPart'>
             <div class = 'name'> #{m[:name]} </div>
-            <div class = 'message'> #{m[:message]} </div>
-            <div class = 'time'> #{m[:time]} </div>
+            <div class = 'messageAndTime'>
+              <div class = 'message'> #{m[:message]} </div>
+              <div class = 'time'> #{m[:time]} </div>
+            </div>
           </div>
           "
         end
