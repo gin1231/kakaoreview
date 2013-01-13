@@ -57,31 +57,31 @@ body {
   background-image:url(chatbg@2x.png);
   background-size:320px 400px;
   background-attachment:fixed;
-  padding-top:4px;
+  padding:4px 0px;
 }
 
-.dateContainer {
+.infoContainer {
   overflow:hidden;
   margin:5px 0px;
 }
 
-.dateInnerContainer {
+.infoInnerContainer {
   float:left;
   width:100%;
   margin-right:-5px;
 }
 
-.dateLeftContainer {
+.infoLeftContainer {
   margin-right:10px;
 }
 
-.dateLeftCol {
+.infoLeftCol {
   float:left;
   width:5px;
   display:inline;
 }
 
-.date {
+.info {
   width:100%;
   text-align:center;
   background-color: rgba(0,0,0,0.3);
@@ -93,45 +93,7 @@ body {
   line-height:12px;
 }
 
-.dateRightCol {
-  float:right;
-  width:5px;
-}
-
-.invitationContainer {
-  overflow:hidden;
-  margin:5px 0px;
-}
-
-.invitationInnerContainer {
-  float:left;
-  width:100%;
-  margin-right:-5px;
-}
-
-.invitationLeftContainer {
-  margin-right:10px;
-}
-
-.invitationLeftCol {
-  float:left;
-  width:5px;
-  display:inline;
-}
-
-.invitation {
-  width:100%;
-  text-align:center;
-  background-color: rgba(0,0,0,0.3);
-  font-size:12px;
-  padding:5px 0px;
-  border-radius:13px;
-  color:white;
-  margin-left:5px;
-  line-height:12px;
-}
-
-.invitationRightCol {
+.infoRightCol {
   float:right;
   width:5px;
 }

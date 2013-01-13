@@ -61,14 +61,13 @@ class Chat < ActiveRecord::Base
         type = MESSAGE
         name = info[0..s-2]
         message = info[s+2..-3]
-        position = LEFT
       end
       #
       # merge infos
       hash = Hash.new
       hash.merge!(:type => type)
       hash.merge!(:message => message)
-      hash.merge!(:name => name, :position => position) unless name.nil?
+      hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
       if changed
         hash.merge!(:date => parsed_date)
       end
@@ -81,19 +80,15 @@ class Chat < ActiveRecord::Base
 
   def parse_ios(f)
     res = []
-    parsed_date = ""
     f.each do |l|
       if l == "\r\n"
         next
       end
 
-      if l.match(/\d{4}년 \d{1,2}월 \d{1,2}일 .요일/)
-        # 날짜 시간 시스템 메시지 패스
-        next
-      end
-
       # set message type
-      if l.match(/\d{4}\. \d{1,2}\. \d{1,2}\. 오(후|전) \d{1,2}:\d{1,2}:/) && l.match(/초대/)
+      if l.match(/\d{4}년 \d{1,2}월 \d{1,2}일 .요일/)
+        type = DATE
+      elsif l.match(/\d{4}\. \d{1,2}\. \d{1,2}\. 오(후|전) \d{1,2}:\d{1,2}:/) && l.match(/초대/)
         # 초대 system message
         type = INVITATION
       elsif l.match(/\d{4}\. \d{1,2}\. \d{1,2}\. 오(후|전) \d{1,2}:\d{1,2}:/) && l.match(/퇴장/)
@@ -110,45 +105,37 @@ class Chat < ActiveRecord::Base
       end
 
       #parse date and set changed
-      changed = false
       cond = (type == UNKNOWN or type == MULTILINEMESSAGE)
       unless cond
-        date, time = parse_date_ios(l)
-        unless parsed_date == date
-          parsed_date = date
-          changed = true
-        end
+        time = parse_time(l)
       end
 
       info = l.sub(/\d{4}\. \d{1,2}\. \d{1,2}\. 오(후|전) \d{1,2}:\d{1,2}(,|:) /,'')
       if cond
-        message = info[0..-3]
+        res[-1][:message] << "<br>" << info[0..-2]
+        next
       else
         s = info.index(':')
         if s.nil?
           message = info[0..-3]
         else
           name = info[0..s-2]
-          message = info[s+2..-3]
+          message = info[s+2..-2]
         end
       end
-      position = LEFT
 
       hash = Hash.new
       hash.merge!(:type => type)
       hash.merge!(:message => parse_emoticons(message))
-      hash.merge!(:name => name, :position => position) unless name.nil?
-      if changed
-        hash.merge!(:date => parsed_date)
-      end
+      hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
       hash.merge!(:time => time) unless time.nil?
       res << hash
     end
     res
   end
 
-  def parse_date_ios(l)
-    [l.match(/\d{4}\. \d{1,2}\. \d{1,2}\./).to_s, l.match(/오(후|전) \d{1,2}:\d{1,2}/).to_s]
+  def parse_time(l)
+    l.match(/오(후|전) \d{1,2}:\d{1,2}/).to_s
   end
 
   def parse_file
