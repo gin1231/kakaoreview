@@ -30,7 +30,6 @@ body {
   width:100%;
   left: 0px;
   top: 0px;
-  word-wrap:break-word;
 }
 
 .chatContainer p {
@@ -48,14 +47,17 @@ body {
   margin-top:-4px;
 }
 
-.chatContainer {
+.chatScreen {
   background-color:#4e76c1;
+  border-radius:3px;
+  word-wrap:break-word;
 }
 
-.chatScreen {
+#chat_list {
   background-image:url(chatbg@2x.png);
   background-size:320px 400px;
   background-attachment:fixed;
+  padding-top:4px;
 }
 
 .dateContainer {
@@ -88,6 +90,7 @@ body {
   border-radius:13px;
   color:white;
   margin-left:5px;
+  line-height:12px;
 }
 
 .dateRightCol {
@@ -125,6 +128,7 @@ body {
   border-radius:13px;
   color:white;
   margin-left:5px;
+  line-height:12px;
 }
 
 .invitationRightCol {

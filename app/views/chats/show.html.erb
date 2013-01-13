@@ -5,12 +5,11 @@
   <%= @chat.title %>
 </p>
 
-<div>
+<div class = 'chatScreen'>
   <% if @chat.chatfile? %>
     <%= html_maker(@chat.parse_file).html_safe %>
   <% end %>
 </div>
-
 
 <%= link_to 'Share', '#' %>
 <%= link_to 'Edit', edit_chat_path(@chat) %> |
