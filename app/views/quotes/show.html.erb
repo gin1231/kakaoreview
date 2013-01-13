@@ -1,0 +1,36 @@
+<h3><%= @quote.title %></h3>
+
+<div>
+  CHAT CONTENTS HERE
+</div>
+
+<div>
+  <h5>Content</h5>
+  <p>
+    <%= @quote.content %>
+  </p>
+  <%= link_to 'Like', '#' %> / <%= link_to 'Dislike', '#' %>
+</div>
+
+<div>
+  <h5>Comments</h5>
+  <div>
+    <%= form_for(@comment, :url => quote_comments_path(@quote)) do |f| %>
+      <%= f.text_field :content %>
+      <%= f.submit '작성' %>
+    <% end %>
+  </div>
+  <div>
+  <% if @quote.comments.length > 0 %>
+    <% @quote.comments.each do |c| %>
+      <b><%= c.user.username %></b>
+      <%= c.content %>
+    <% end %>
+  <% else %>
+    코멘트가 없습니다
+  <% end %>
+  </div>
+</div>
+
+
+<%= link_to 'Back', quotes_path %>

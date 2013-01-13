@@ -10,6 +10,13 @@ class Chat < ActiveRecord::Base
   has_many :messages
   has_and_belongs_to_many :readers, :class_name => "User", :join_table => "users_readable_chats"
 
+  UPLOADED = 1
+  CREATED = 2
+
+  scope :uploaded, where(:type => UPLOADED)
+  scope :created, where(:type => CREATED)
+
+
   def parse_android(f)
     res = []
     parsed_date = ""

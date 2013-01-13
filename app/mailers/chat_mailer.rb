@@ -11,6 +11,7 @@ class ChatMailer < ActionMailer::Base
 			chat.title = message.subject
 			chat.chatfile = file
 			chat.user = User.find_by_username(message.to[0].split("@")[0])
+			chat.type = Chat::UPLOADED
       logger.info message.subject
 		end
 

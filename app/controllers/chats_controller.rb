@@ -58,7 +58,8 @@ class ChatsController < ApplicationController
   def create
     @chat = Chat.new(params[:chat])
     @chat.user = current_user
-
+    @chat.type = Chat::UPLOADED
+      
     respond_to do |format|
       if @chat.save
         format.html { redirect_to @chat, notice: 'Chat was successfully created.' }
