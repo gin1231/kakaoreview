@@ -3,9 +3,16 @@ Kakaoreview::Application.routes.draw do
 
   devise_for :users
 
+  resources :main, :only => ['index']
+  resources :quotes do
+    resources :comments
+  end
   resources :chats
+	resources :emails
 
-  root :to => 'chats#index'
+  match 'help' => 'main#help'
+
+  root :to => 'main#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

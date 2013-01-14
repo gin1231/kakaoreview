@@ -7,8 +7,15 @@ class Chat < ActiveRecord::Base
 
 
   belongs_to :user, :inverse_of => :chats
-
+  has_many :messages
   has_and_belongs_to_many :readers, :class_name => "User", :join_table => "users_readable_chats"
+
+  UPLOADED = 1
+  CREATED = 2
+
+  scope :uploaded, where(:type => UPLOADED)
+  scope :created, where(:type => CREATED)
+
 
   def parse_android(f)
     res = []
@@ -61,14 +68,13 @@ class Chat < ActiveRecord::Base
         type = MESSAGE
         name = info[0..s-2]
         message = info[s+2..-3]
-        position = LEFT
       end
       #
       # merge infos
       hash = Hash.new
       hash.merge!(:type => type)
       hash.merge!(:message => message)
-      hash.merge!(:name => name, :position => position) unless name.nil?
+      hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
       if changed
         hash.merge!(:date => parsed_date)
       end
@@ -81,19 +87,13 @@ class Chat < ActiveRecord::Base
 
   def parse_ios(f)
     res = []
-    parsed_date = ""
     f.each do |l|
-      if l == "\r\n"
-        next
-      end
-
-      if l.match(/\d{4}년 \d{1,2}월 \d{1,2}일 .요일/)
-        # 날짜 시간 시스템 메시지 패스
-        next
-      end
+      next if l == "\r\n"
 
       # set message type
-      if l.match(/\d{4}\. \d{1,2}\. \d{1,2}\. 오(후|전) \d{1,2}:\d{1,2}:/) && l.match(/초대/)
+      if l.match(/\d{4}년 \d{1,2}월 \d{1,2}일 .요일/)
+        type = DATE
+      elsif l.match(/\d{4}\. \d{1,2}\. \d{1,2}\. 오(후|전) \d{1,2}:\d{1,2}:/) && l.match(/초대/)
         # 초대 system message
         type = INVITATION
       elsif l.match(/\d{4}\. \d{1,2}\. \d{1,2}\. 오(후|전) \d{1,2}:\d{1,2}:/) && l.match(/퇴장/)
@@ -110,46 +110,47 @@ class Chat < ActiveRecord::Base
       end
 
       #parse date and set changed
-      changed = false
       cond = (type == UNKNOWN or type == MULTILINEMESSAGE)
       unless cond
-        date, time = parse_date_ios(l)
-        unless parsed_date == date
-          parsed_date = date
-          changed = true
-        end
+        time = l.match(/오(후|전) \d{1,2}:\d{1,2}/).to_s
       end
 
       info = l.sub(/\d{4}\. \d{1,2}\. \d{1,2}\. 오(후|전) \d{1,2}:\d{1,2}(,|:) /,'')
       if cond
-        message = info[0..-3]
+        res[-1][:message] << "<br>" << info[0..-2]
+        next
       else
         s = info.index(':')
         if s.nil?
           message = info[0..-3]
         else
           name = info[0..s-2]
-          message = info[s+2..-3]
+          message = info[s+2..-2]
         end
       end
-      position = LEFT
 
       hash = Hash.new
       hash.merge!(:type => type)
-      hash.merge!(:message => message)
-      hash.merge!(:name => name, :position => position) unless name.nil?
-      if changed
-        hash.merge!(:date => parsed_date)
-      end
+      hash.merge!(:content => message_type(message), :message => parse_emoticons(message))
+      hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
       hash.merge!(:time => time) unless time.nil?
       res << hash
     end
     res
   end
 
-  def parse_date_ios(l)
-    [l.match(/\d{4}\. \d{1,2}\. \d{1,2}\./).to_s, l.match(/오(후|전) \d{1,2}:\d{1,2}/).to_s]
+  def message_type(message)
+    if message.match(/_talkm_.{10}_.{22}_.{6}[[:punct:]]jpg/)
+      IMAGE
+    elsif message.match(/_talka_.{10}_.{22}_.{6}-aac[[:punct:]]m4a/)
+      AUDIO
+    elsif message.match(/_.{4}_.{4}_.{3}_.{31}[[:punct:]]mp4/)
+      VIDEO
+    else
+      TEXT
+    end
   end
+
 
   def parse_file
     f = File.open(self.chatfile.path)
@@ -168,4 +169,17 @@ class Chat < ActiveRecord::Base
     end
     res
   end
+
+  def parse_emoticons(message)
+    dict = Hash[ "(미소)" => 1, "(윙크)" => 2, "(방긋)" => 3, "(반함)" => 4, "(눈물)" => 5, "(절규)" => 6, "(크크)" => 7, "(메롱)" => 8, "(잘자)" => 9, "(잘난척)" => 10, "(헤롱)" => 11, "(놀람)" => 12, "(아픔)" => 13, "(당황)" => 14, "(풍선껌)" => 15, "(버럭)" => 16, "(부끄)" => 17, "(궁금)" => 18, "(흡족)" => 19, "(깜찍)" => 20, "(으으)" => 21, "(민망)" => 22, "(곤란)" => 23, "(잠)" => 24, "(행복)" => 25, "(안도)" => 26, "(우웩)" => 27, "(외계인)" => 28, "(외계인녀)" => 72, "(공포)" => 29, "(근심)" => 30, "(악마)" => 31, "(썩소)" => 32, "(쳇)" => 33, "(야호)" => 69, "(좌절)" => 70, "(삐짐)" => 71, "(하트)" => 34, "(실연)" => 74, "(별)" => 75, "(브이)" => 73, "(오케이)" => 35, "(최고)" => 36, "(최악)" => 37, "(그만)" => 38, "(땀)" => 39, "(알약)" => 40, "(밥)" => 41, "(커피)" => 42, "(맥주)" => 43, "(소주)" => 44, "(와인)" => 79, "(치킨)" => 78, "(축하)" => 45, "(음표)" => 46, "(선물)" => 47, "(케익)" => 48, "(촛불)" => 49, "(컵케익a)" => 50, "(컵케익b)" => 51, "(해)" => 52, "(구름)" => 53, "(비)" => 54, "(눈)" => 55, "(똥)" => 56, "(근조)" => 57, "(딸기)" => 58, "(호박)" => 59, "(입술)" => 60, "(야옹)" => 61, "(돈)" => 62, "(담배)" => 63, "(축구)" => 64, "(야구)" => 65, "(농구)" => 66, "(당구)" => 67, "(골프)" => 76, "(카톡)" => 68, "(꽃)" => 81, "(총)" => 82, "(크리스마스)" => 80, "(콜)" => 77 ] 
+  
+    dict.each do |k, v|
+      message.gsub!(k, "<span class = 'emoticon'><img src = '/assets/emoticons/emo#{'%02d' % v}.png'></span>")
+      #message.gsub!(k, "<span class = 'emoticon emoticon-#{v}'></span>")
+    end
+
+    message
+  
+  end
+
 end

@@ -1,0 +1,10 @@
+<ul class="nav nav-list">
+  <li><%= link_to 'Recent', quotes_path %></li>
+  <li class="nav-header">RANK BY</li>
+  <li><%= link_to 'Daily', quotes_path(:sort => 'daily') %></li>
+  <li><%= link_to 'Weekly', quotes_path(:sort => 'weekly') %></li>
+  <li><%= link_to 'Monthly', quotes_path(:sort => 'monthly') %></li>
+  <li class="divider"></li>
+</ul>
+
+

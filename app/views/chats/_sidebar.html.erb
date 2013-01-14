@@ -1,23 +1,19 @@
-<h1>Listing chats</h1>
+<ul class="nav nav-list">
+  <% @chats.each do |chat| %>
+  <li><%= link_to chat.title, chat %></li>
+  <% end %>
+  <li class="nav-header">업로드한 대화</li>
+  <% @chats.uploaded.each do |chat| %>
+  <li><%= link_to chat.title, chat %></li>
+  <% end %>
+  <li class="divider"></li>
+  <li class="nav-header">만든 대화</li>
+  <% @chats.created.each do |chat| %>
+  <li><%= link_to chat.title, chat %></li>
+  <% end %>
+  </li>
+</ul>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @chats.each do |chat| %>
-  <tr>
-    <td><%= chat.title %></td>
-    <td><%= link_to 'Show', chat %></td>
-    <td><%= link_to 'Edit', edit_chat_path(chat) %></td>
-    <td><%= link_to 'Destroy', chat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Chat', new_chat_path %>
+<div>
+  <%= link_to '대화만들기', new_chat_path, :class => 'btn btn-large btn-block' %>
+</div>

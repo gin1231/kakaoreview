@@ -1,0 +1,19 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <%= link_to 'Kakao Review for 잉여=너', root_path, :class => "brand" %>
+    <ul class="nav">
+        <li><%= link_to '인기대화', quotes_path %></li>
+        <li><%= link_to '대화만들기', new_chat_path %></li>
+        <li><%= link_to '대화저장소', chats_path %></li>
+        <li><%= link_to '도움말', help_path %></li>
+    </ul>
+    <ul class="nav">
+      <% if user_signed_in? %>
+        <li><%= link_to '로그아웃', destroy_user_session_path, :method => :delete %></li>
+      <% else %>
+        <li><%= link_to '회원가입', new_user_registration_path %></li>
+        <li><%= link_to '로그인', new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

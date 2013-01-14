@@ -1,0 +1,11 @@
+<h2>Quotes with ranking</h2>
+
+<div>
+<% @quotes.each do |q| %>
+  <div>
+    <%= link_to q.title, quote_path(q) %>
+  </div>
+<% end %>
+</div>
+
+<%= button_to 'Create TestQuote', quotes_path %>
