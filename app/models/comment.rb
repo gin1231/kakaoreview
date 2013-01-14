@@ -1,4 +1,5 @@
-class Comment < ActiveRecord::Base
+class Comment
+  include Mongoid::Document
   attr_accessible :content
   
   belongs_to :quote

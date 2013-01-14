@@ -1,17 +1,27 @@
 #coding: utf-8
-class Chat < ActiveRecord::Base
+class Chat
+  include Mongoid::Document
+  include Mongoid::Timestamps::Created
+  include Mongoid::Timestamps::Updated
+
+  #=== Fields
+  field :title, type: String
+  field :chatfile_file_name, type: String
+  field :chatfile_content_type, type: String
+  field :chatfile_file_size, type: Integer
+  field :chatfile_updated_at, type: DateTime
+  field :chat_type, type: Integer
+
+
   attr_accessible :title
   attr_accessible :chatfile
 
-  has_attached_file :chatfile
+  #has_attached_file :chatfile
 
 
   belongs_to :user, :inverse_of => :chats
-  has_many :messages
-  has_and_belongs_to_many :readers, :class_name => "User", :join_table => "users_readable_chats"
-
-  UPLOADED = 1
-  CREATED = 2
+  embeds_many :messages
+  #has_and_belongs_to_many :readers, :class_name => "User", :join_table => "users_readable_chats"
 
   scope :uploaded, where(:chat_type => UPLOADED)
   scope :created, where(:chat_type => CREATED)

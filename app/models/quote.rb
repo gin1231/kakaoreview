@@ -1,4 +1,5 @@
-class Quote < ActiveRecord::Base
+class Quote
+  include Mongoid::Document
   attr_accessible :title, :content
 
   has_many :comments

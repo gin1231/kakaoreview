@@ -1,0 +1,20 @@
+development:
+  host: localhost
+  database: kakaoreview_development
+  options:
+    raise_not_found_error: false
+
+test:
+  host: localhost
+  database: kakaoreview_test
+
+# set these environment variables on your prod server
+
+production:
+  host: localhost
+  username: test
+  password: test
+  database: kakaoreview_production
+  options:
+    raise_not_found_error: false
+

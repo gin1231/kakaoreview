@@ -4,8 +4,11 @@ gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'therubyracer'
+gem 'mongoid'
+gem 'bson_ext'
 
-gem 'mysql2'
+#gem 'mysql2'
 gem 'thin'
 gem 'rails_admin'
 gem 'devise'

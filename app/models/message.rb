@@ -1,4 +1,5 @@
-class Message < ActiveRecord::Base
+class Message
+  include Mongoid::Document
   # attr_accessible :title, :body
   belongs_to :chat
 

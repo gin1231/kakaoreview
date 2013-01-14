@@ -12,3 +12,8 @@ VIDEO = 3
 
 ANDROID = 0
 IOS = 1
+
+UPLOADED = 1
+CREATED = 2
+
+
