@@ -13,8 +13,8 @@ class Chat < ActiveRecord::Base
   UPLOADED = 1
   CREATED = 2
 
-  scope :uploaded, where(:type => UPLOADED)
-  scope :created, where(:type => CREATED)
+  scope :uploaded, where(:chat_type => UPLOADED)
+  scope :created, where(:chat_type => CREATED)
 
 
   def parse_android(f)
