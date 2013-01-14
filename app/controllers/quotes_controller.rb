@@ -5,7 +5,7 @@ class QuotesController < ApplicationController
   def index
     sort = params[:sort]
 
-    @quotes = Quote.order(:created_at)
+    @quotes = Quote.all
   end
 
   def show

@@ -3,6 +3,7 @@ class Chat
   include Mongoid::Document
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
+  include Mongoid::Paperclip
 
   #=== Fields
   field :title, type: String
@@ -16,12 +17,14 @@ class Chat
   attr_accessible :title
   attr_accessible :chatfile
 
-  #has_attached_file :chatfile
+  has_mongoid_attached_file :chatfile
 
 
   belongs_to :user, :inverse_of => :chats
   embeds_many :messages
   #has_and_belongs_to_many :readers, :class_name => "User", :join_table => "users_readable_chats"
+  accepts_nested_attributes_for :messages
+
 
   scope :uploaded, where(:chat_type => UPLOADED)
   scope :created, where(:chat_type => CREATED)
@@ -82,13 +85,14 @@ class Chat
       #
       # merge infos
       hash = Hash.new
-      hash.merge!(:type => type)
+      hash.merge!(:message_type => type)
       hash.merge!(:message => message)
+      hash.merge!(:content => message_type(message))
       hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
       if changed
         hash.merge!(:date => parsed_date)
       end
-      hash.merge!(:time => time) unless time.nil?
+      hash.merge!(:message_time => time) unless time.nil?
 
       res << hash
     end
@@ -140,12 +144,13 @@ class Chat
       end
 
       hash = Hash.new
-      hash.merge!(:type => type)
+      hash.merge!(:message_type => type)
       hash.merge!(:content => message_type(message), :message => parse_emoticons(message))
       hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
-      hash.merge!(:time => time) unless time.nil?
+      hash.merge!(:message_time => time) unless time.nil?
       res << hash
     end
+    #self.messages.create(res)
     res
   end
 

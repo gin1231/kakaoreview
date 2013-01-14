@@ -5,18 +5,18 @@ module ChatsHelper
   def html_maker(data)
     html = ''
     data.each do |m|
-      case m[:type]
+      case m[:message_type]
         when DATE, INVITATION, LEAVE
           html << info_maker(m[:message])
         when MESSAGE
           if m[:isMine]
             html << "<div class = 'messageContainer'><div class = 'messageDiv isMine'>"
-            html << message_maker(m) << "<div class = 'time'>#{m[:time]}</div>"
+            html << message_maker(m) << "<div class = 'time'>#{m[:message_time]}</div>"
           else
             html << "<div class = 'messageContainer'><div class = 'messageDiv isNotMine'>"
             html << "<div class = 'profilePicContainer'><div class = 'profilePic'></div></div>"
             html << "<div class = 'rightPart'> <div class = 'name'> #{m[:name]} </div>"
-            html << message_maker(m) << "<div class = 'time'> #{m[:time]} </div></div>"
+            html << message_maker(m) << "<div class = 'time'> #{m[:message_time]} </div></div>"
           end
           html << "</div></div>"
       end

@@ -12,7 +12,8 @@ gem 'bson_ext'
 gem 'thin'
 gem 'rails_admin'
 gem 'devise'
-gem 'paperclip'
+#gem 'paperclip'
+gem 'mongoid-paperclip', :require => "mongoid_paperclip"
 gem 'mail'
 
 
