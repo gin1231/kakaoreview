@@ -81,9 +81,7 @@ class Chat < ActiveRecord::Base
   def parse_ios(f)
     res = []
     f.each do |l|
-      if l == "\r\n"
-        next
-      end
+      next if l == "\r\n"
 
       # set message type
       if l.match(/\d{4}년 \d{1,2}월 \d{1,2}일 .요일/)
@@ -107,7 +105,7 @@ class Chat < ActiveRecord::Base
       #parse date and set changed
       cond = (type == UNKNOWN or type == MULTILINEMESSAGE)
       unless cond
-        time = parse_time(l)
+        time = l.match(/오(후|전) \d{1,2}:\d{1,2}/).to_s
       end
 
       info = l.sub(/\d{4}\. \d{1,2}\. \d{1,2}\. 오(후|전) \d{1,2}:\d{1,2}(,|:) /,'')
@@ -126,7 +124,7 @@ class Chat < ActiveRecord::Base
 
       hash = Hash.new
       hash.merge!(:type => type)
-      hash.merge!(:message => parse_emoticons(message))
+      hash.merge!(:content => message_type(message), :message => parse_emoticons(message))
       hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
       hash.merge!(:time => time) unless time.nil?
       res << hash
@@ -134,9 +132,18 @@ class Chat < ActiveRecord::Base
     res
   end
 
-  def parse_time(l)
-    l.match(/오(후|전) \d{1,2}:\d{1,2}/).to_s
+  def message_type(message)
+    if message.match(/_talkm_.{10}_.{22}_.{6}[[:punct:]]jpg/)
+      IMAGE
+    elsif message.match(/_talka_.{10}_.{22}_.{6}-aac[[:punct:]]m4a/)
+      AUDIO
+    elsif message.match(/_.{4}_.{4}_.{3}_.{31}[[:punct:]]mp4/)
+      VIDEO
+    else
+      TEXT
+    end
   end
+
 
   def parse_file
     f = File.open(self.chatfile.path)

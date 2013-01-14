@@ -53,7 +53,7 @@ body {
   word-wrap:break-word;
 }
 
-#chat_list {
+.chat_list {
   background-image:url(chatbg@2x.png);
   background-size:320px 400px;
   background-attachment:fixed;
@@ -147,7 +147,7 @@ body {
   margin-left:33px;
 }
 
-.message{
+.textMessage{
   font-size:14.5px;
   margin-bottom: 2px;
   line-height:130%;
@@ -163,7 +163,23 @@ body {
   line-height:16px;
 }
 
-.isNotMine .message{
+.audioMessage img{
+  width:50px;
+}
+
+.videoMessage img{
+  width:50px;
+}
+
+.isNotMine .audioMessage{
+  position:relative;
+  z-index: 9;
+  padding:19px 18px 19px 20px;
+  margin-left:4px;
+}
+
+
+.isNotMine .textMessage{
   position:relative;
   z-index: 9;
   padding:11px 13px 12px 14px;
@@ -188,7 +204,6 @@ body {
   border-style: solid;
 }
 
-
 .isNotMine .time {
   float:right;
   margin-top:-30px;
@@ -204,7 +219,28 @@ body {
   text-align:right;
 }
 
-.isMine .message{
+.isMine .textMessage{
+  position:relative;
+  z-index: 9;
+  padding:11px 13px 12px 14px;
+  margin-right:5px;
+}
+
+.isMine .audioMessage{
+  position:relative;
+  z-index: 9;
+  padding:19px 18px 19px 20px;
+  margin-left:4px;
+}
+
+.isMine .videoMessage{
+  position:relative;
+  z-index: 9;
+  padding:13px 13px 14px 14px;
+  margin-right:5px;
+}
+
+.isMine .imageMessage{
   position:relative;
   z-index: 9;
   padding:11px 13px 12px 14px;

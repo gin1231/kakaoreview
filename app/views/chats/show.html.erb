@@ -6,11 +6,13 @@
 </p>
 
 <div class = 'chatScreen'>
+	<div class = 'chat_list'>
   <% if @chat.chatfile? %>
     <%= html_maker(@chat.parse_file).html_safe %>
-  <% end %>
+	<% end %>
+	</div>
 </div>
 
-<%= link_to 'Share', '#' %>
+<%= link_to 'Share', '#' %> | 
 <%= link_to 'Edit', edit_chat_path(@chat) %> |
 <%= link_to 'Back', chats_path %>
