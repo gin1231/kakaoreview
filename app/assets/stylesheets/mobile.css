@@ -1,5 +1,6 @@
 body {
-  font-family: sans-serif;
+  /*font-family: sans-serif;*/
+  font-family: '나눔고딕', '맑은 고딕', '굴림';
 }
 
 #loginScreen {

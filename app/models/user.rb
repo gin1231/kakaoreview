@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :chats, :inverse_of => :user
+  has_many :quotes
+  has_many :comments
 
   has_and_belongs_to_many :readable_chats, :class_name => "Chat", :join_table => "users_readable_chats"
 

@@ -4,7 +4,9 @@ Kakaoreview::Application.routes.draw do
   devise_for :users
 
   resources :main, :only => ['index']
-  resources :quotes
+  resources :quotes do
+    resources :comments
+  end
   resources :chats
 	resources :emails
 
