@@ -72,13 +72,13 @@ class Chat < ActiveRecord::Base
       #
       # merge infos
       hash = Hash.new
-      hash.merge!(:type => type)
+      hash.merge!(:message_type => type)
       hash.merge!(:message => message)
       hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
       if changed
         hash.merge!(:date => parsed_date)
       end
-      hash.merge!(:time => time) unless time.nil?
+      hash.merge!(:message_time => time) unless time.nil?
 
       res << hash
     end
@@ -130,12 +130,13 @@ class Chat < ActiveRecord::Base
       end
 
       hash = Hash.new
-      hash.merge!(:type => type)
+      hash.merge!(:message_type => type)
       hash.merge!(:content => message_type(message), :message => parse_emoticons(message))
       hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
-      hash.merge!(:time => time) unless time.nil?
+      hash.merge!(:message_time => time) unless time.nil?
       res << hash
     end
+    #self.messages.create(res)
     res
   end
 

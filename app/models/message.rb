@@ -1,9 +1,8 @@
 class Message < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :message_type, :content, :message, :name, :isMine, :message_date, :message_time
   belongs_to :chat
 
-  INVITATION = 1
-  MESSAGE = 2
-
+  # Message Type Defined in config/initializers/chat_type.rb
   
+
 end
