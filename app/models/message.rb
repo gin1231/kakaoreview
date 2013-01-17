@@ -4,10 +4,11 @@ class Message
   #=== Fields
   field :message_type, type: Integer
   field :message, type: String
+  field :content, type: Integer
   field :name, type: String
   field :isMine, type: Boolean
-  field :message_date, type: Date
-  field :message_time, type: Time
+  field :message_date, type: String
+  field :message_time, type: String
 
 
 

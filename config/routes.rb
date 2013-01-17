@@ -6,6 +6,9 @@ Kakaoreview::Application.routes.draw do
   resources :main, :only => ['index']
   resources :quotes do
     resources :comments
+    member do
+      post :rate
+    end
   end
   resources :chats
 	resources :emails

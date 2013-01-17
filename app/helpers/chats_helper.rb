@@ -5,18 +5,18 @@ module ChatsHelper
   def html_maker(data)
     html = ''
     data.each do |m|
-      case m[:message_type]
+      case m.message_type
         when DATE, INVITATION, LEAVE
-          html << info_maker(m[:message])
+          html << info_maker(m.message)
         when MESSAGE
-          if m[:isMine]
+          if m.isMine
             html << "<div class = 'messageContainer'><div class = 'messageDiv isMine'>"
-            html << message_maker(m) << "<div class = 'time'>#{m[:message_time]}</div>"
+            html << message_maker(m) << "<div class = 'time'>#{m.message_time}</div>"
           else
             html << "<div class = 'messageContainer'><div class = 'messageDiv isNotMine'>"
             html << "<div class = 'profilePicContainer'><div class = 'profilePic'></div></div>"
-            html << "<div class = 'rightPart'> <div class = 'name'> #{m[:name]} </div>"
-            html << message_maker(m) << "<div class = 'time'> #{m[:message_time]} </div></div>"
+            html << "<div class = 'rightPart'> <div class = 'name'> #{m.name} </div>"
+            html << message_maker(m) << "<div class = 'time'> #{m.message_time} </div></div>"
           end
           html << "</div></div>"
       end
@@ -25,16 +25,16 @@ module ChatsHelper
   end
 
   def message_maker(m)
-    if m[:content] == TEXT
-      "<div class = 'message textMessage'> #{m[:message]} </div>"
-    elsif m[:content] == IMAGE
-      "<div class = 'message imageMessage'> #{m[:message]} </div>"
-    elsif m[:content] == AUDIO
-      "<div class = 'message audioMessage'><a href = '#{m[:message]}'><img src = '/assets/voiceplay.png'></a></div>"
-    elsif m[:content] == VIDEO
-      "<div class = 'message videoMessage'><a href = '#{m[:message]}'><img src = '/assets/video.png'></a></div>"
+    if m.content == TEXT
+      "<div class = 'message textMessage'> #{m.message} </div>"
+    elsif m.content == IMAGE
+      "<div class = 'message imageMessage'> #{m.message} </div>"
+    elsif m.content == AUDIO
+      "<div class = 'message audioMessage'><a href = '#{m.message}'><img src = '/assets/voiceplay.png'></a></div>"
+    elsif m.content == VIDEO
+      "<div class = 'message videoMessage'><a href = '#{m.message}'><img src = '/assets/video.png'></a></div>"
     else
-      "<div class = 'message unknownMessage'> #{m[:message]} </div>"
+      "<div class = 'message unknownMessage'> #{m.message} </div>"
     end
   end
 
