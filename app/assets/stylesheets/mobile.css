@@ -21,6 +21,12 @@ body {
   font-size:23px;
 }
 
+.message a {
+  text-decoration:none;
+  color:blue;
+
+}
+
 #loginButton input[type="submit"] {
   width:150px;
   height:35px;

@@ -1,5 +1,6 @@
 #coding: utf-8
 class Chat < ActiveRecord::Base
+  require 'uri'
   attr_accessible :title
   attr_accessible :chatfile
 
@@ -131,7 +132,7 @@ class Chat < ActiveRecord::Base
 
       hash = Hash.new
       hash.merge!(:message_type => type)
-      hash.merge!(:content => message_type(message), :message => parse_emoticons(message))
+      hash.merge!(:content => message_type(message), :message => parse_misc(message))
       hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
       hash.merge!(:message_time => time) unless time.nil?
       res << hash
@@ -169,6 +170,19 @@ class Chat < ActiveRecord::Base
       res = parse_ios(f)
     end
     res
+  end
+
+  def parse_misc(message)
+    parse_emoticons(parse_links(message))
+  end
+
+  def parse_links(message)
+    links = URI.extract(message)
+
+    links.each do |k|
+        message.gsub!(k, "<a href ='#{k}'>#{k}</a>") 
+    end
+    message
   end
 
   def parse_emoticons(message)
