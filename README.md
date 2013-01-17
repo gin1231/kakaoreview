@@ -1,6 +1,6 @@
-== KakaoReview
+# KakaoReview
 
-# 필요한 것들
+## 필요한 것들
 
 1. libqt
 2. libqtwebkit - 2.2 이상으로, 2.3이면 더더욱 좋음(이미지 다운샘플링 / 최신 CSS3기능 지원)
