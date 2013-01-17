@@ -13,4 +13,5 @@ class Quote
   has_many :comments
   belongs_to :chat
   belongs_to :user
+  embeds_many :rate
 end
