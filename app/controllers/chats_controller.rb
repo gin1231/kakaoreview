@@ -8,7 +8,8 @@ class ChatsController < ApplicationController
     if user_signed_in?
       @chats = current_user.chats
     else
-      redirect_to new_user_session_path
+      #redirect_to new_user_session_path
+      @chats = User.find_by_id(1).chats
     end
   end
 
@@ -58,7 +59,7 @@ class ChatsController < ApplicationController
   def create
     @chat = Chat.new(params[:chat])
     @chat.user = current_user
-    @chat.type = Chat::UPLOADED
+    @chat.chat_type = Chat::UPLOADED
       
     respond_to do |format|
       if @chat.save
