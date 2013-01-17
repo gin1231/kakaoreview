@@ -1,6 +1,6 @@
 body {
   /*font-family: sans-serif;*/
-  font-family: '나눔고딕', '맑은 고딕', '굴림';
+  font-family: '나눔고딕', '맑은 고딕', '굴림', sans-serif;
 }
 
 #loginScreen {
@@ -19,6 +19,12 @@ body {
   width:70%;
   height:30px;
   font-size:23px;
+}
+
+.message a {
+  text-decoration:none;
+  color:blue;
+
 }
 
 #loginButton input[type="submit"] {
@@ -46,6 +52,10 @@ body {
   height:auto;
   vertical-align:middle;
   margin-top:-4px;
+}
+
+.chatContainer {
+  width:320px;
 }
 
 .chatScreen {
@@ -183,7 +193,7 @@ body {
 .isNotMine .textMessage{
   position:relative;
   z-index: 9;
-  padding:11px 13px 12px 14px;
+  padding:10px 13px 12px 14px;
   margin-left:4px;
 }
 
@@ -200,7 +210,8 @@ body {
   border-width: 13px 15px 16px 17px;
   border-image: url(pop_white.png) 13 15 16 17 fill repeat;
   -moz-border-image: url(pop_white.png) 13 15 16 17 fill repeat;
-  -webkit-border-image: -webkit-image-set(url(pop_white.png) 1x, url(pop_white@2x.png) 2x) 13 15 16 17 fill repeat;
+  /*-webkit-border-image: -webkit-image-set(url(pop_white.png) 1x, url(pop_white@2x.png) 2x) 13 15 16 17 fill repeat;*/
+  -webkit-border-image: url(pop_white.png) 13 15 16 17 repeat;
   -o-border-image: url(pop_white.png) 13 15 16 17 fill repeat;
   border-style: solid;
 }
@@ -223,7 +234,7 @@ body {
 .isMine .textMessage{
   position:relative;
   z-index: 9;
-  padding:11px 13px 12px 14px;
+  padding:10px 13px 12px 14px;
   margin-right:5px;
 }
 
@@ -263,7 +274,8 @@ body {
   border-width: 13px 18px 15px 15px;
   border-image: url(pop_yellow.png) 13 18 15 15 fill repeat;
   -moz-border-image: url(pop_yellow.png) 13 18 15 15 fill repeat;
-  -webkit-border-image: -webkit-image-set(url(pop_yellow.png) 1x, url(pop_yellow@2x.png) 2x) 13 18 15 15 fill repeat;
+  /*-webkit-border-image: -webkit-image-set(url(pop_yellow.png) 1x, url(pop_yellow@2x.png) 2x) 13 18 15 15 fill repeat;*/
+  -webkit-border-image: url(pop_yellow.png) 13 18 15 15 repeat;
   -o-border-image: url(pop_yellow.png) 13 18 15 15 fill repeat;
   border-style: solid;
 }

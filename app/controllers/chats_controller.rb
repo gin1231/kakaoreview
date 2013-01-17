@@ -8,7 +8,8 @@ class ChatsController < ApplicationController
     if user_signed_in?
       @chats = current_user.chats
     else
-      redirect_to new_user_session_path
+      #redirect_to new_user_session_path
+      @chats = User.find_by_id(1).chats
     end
   end
 
