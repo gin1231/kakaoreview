@@ -180,14 +180,9 @@ class Chat
         end
       end
 
-      contentType = message_type(message)
-      if contentType == IMAGE
-        message = parse_image(message)
-      end
-
       hash = Hash.new
       hash.merge!(:message_type => type)
-      hash.merge!(:content => contentType, :message => parse_misc(message))
+      hash.merge!(:content => message_type(message), :message => parse_misc(message))
       hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
       hash.merge!(:message_time => time) unless time.nil?
       res << Message.new(hash)
@@ -196,17 +191,6 @@ class Chat
   end
 
   def message_type(message)
-=begin
-    if message.match(/_talkm_.{10}_.{22}_.{6}[[:punct:]]jpg/)
-      IMAGE
-    elsif message.match(/_talka_.{10}_.{22}_.{6}-aac[[:punct:]]m4a/)
-      AUDIO
-    elsif message.match(/_.{4}_.{4}_.{3}_.{31}[[:punct:]]mp4/)
-      VIDEO
-    else
-      TEXT
-    end
-=end
     if message.match(/[0-9a-zA-Z-=_]*[[:punct:]]jpg/)
       IMAGE
     elsif message.match(/[0-9a-zA-Z-=_]*[[:punct:]]m4a/)
@@ -239,11 +223,6 @@ class Chat
       self.save
     end
     #self.messages
-  end
-
-  def parse_image(message)
-    filename = message.scan(/_talkm_.{10}_.{22}_.{6}[[:punct:]]jpg/)[0]
-    message.gsub!(filename, "<span class = 'messageImage'><img src ='/assets/uploaded/#{filename}'></span>")
   end
 
   def parse_misc(message)

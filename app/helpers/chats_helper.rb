@@ -34,7 +34,11 @@ module ChatsHelper
     if m.content == TEXT
       "<div class = 'message textMessage'> #{m.message} </div>"
     elsif m.content == IMAGE
-      "<div class = 'message imageMessage'> <a href='#{m.chat.get_file(m.message)}' target='_blank'> <img src='#{m.chat.get_file(m.message)}' /> </a> </div>"
+      "<div class = 'message imageMessage'> 
+        <a class = 'messageImage' href='#{m.chat.get_file(m.message)}' target='_blank'> 
+          <img src='/assets/uploaded/#{m.chat.get_file(m.message)}' /> 
+        </a> 
+      </div>"
     elsif m.content == AUDIO
       "<div class = 'message audioMessage'><a href = '#{m.message}'><img src = '/assets/voiceplay.png'></a></div>"
     elsif m.content == VIDEO

@@ -198,8 +198,11 @@ body {
   width:50px;
 }
 
-.imageMessage img {
-  width: 50px;
+.isNotMine .imageMessage{
+  position:relative;
+  z-index: 9;
+  padding:10px 10px 7px 9px;
+  margin-right:5px;
 }
 
 .isNotMine .audioMessage{
@@ -207,13 +210,6 @@ body {
   z-index: 9;
   padding:19px 18px 19px 20px;
   margin-left:4px;
-}
-
-.isNotMine .imageMessage{
-  position:relative;
-  z-index: 9;
-  padding:11px 13px 12px 14px;
-  margin-left:5px;
 }
 
 .isNotMine .textMessage{
@@ -284,7 +280,6 @@ body {
   padding:10px 10px 7px 9px;
   margin-right:5px;
 }
-
 
 .isMine .message::before {
   
