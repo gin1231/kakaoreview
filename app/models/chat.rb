@@ -27,6 +27,8 @@ class Chat
 
   belongs_to :user, :inverse_of => :chats
   embeds_many :messages
+  embeds_many :attachments
+
   #has_and_belongs_to_many :readers, :class_name => "User", :join_table => "users_readable_chats"
   accepts_nested_attributes_for :messages
 
