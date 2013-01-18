@@ -37,6 +37,32 @@ class Chat
   scope :created, where(:chat_type => CREATED)
 
 
+
+  ### CRUD
+  def self.create_chat chat_params, user, chat_type
+    new_chat = Chat.new(chat_params)
+    new_chat.user = user
+    new_chat.chat_type = chat_type
+    
+    if new_chat.save
+      new_chat.parse_file
+      return new_chat
+    else
+      return
+    end
+  end
+
+  def get_file filename
+    file = self.attachments.where(:att_file_name => filename)
+    if file.length > 0
+      return file.first.att.url
+    else
+      return filename
+    end
+  end
+
+
+  ### Parse methods
   def parse_android(f)
     res = []
     parsed_date = ""
@@ -170,11 +196,22 @@ class Chat
   end
 
   def message_type(message)
+=begin
     if message.match(/_talkm_.{10}_.{22}_.{6}[[:punct:]]jpg/)
       IMAGE
     elsif message.match(/_talka_.{10}_.{22}_.{6}-aac[[:punct:]]m4a/)
       AUDIO
     elsif message.match(/_.{4}_.{4}_.{3}_.{31}[[:punct:]]mp4/)
+      VIDEO
+    else
+      TEXT
+    end
+=end
+    if message.match(/[0-9a-zA-Z-=_]*[[:punct:]]jpg/)
+      IMAGE
+    elsif message.match(/[0-9a-zA-Z-=_]*[[:punct:]]m4a/)
+      AUDIO
+    elsif message.match(/[0-9a-zA-Z-=_]*[[:punct:]]mp4/)
       VIDEO
     else
       TEXT
@@ -201,7 +238,7 @@ class Chat
       self.parsed = true
       self.save
     end
-    self.messages
+    #self.messages
   end
 
   def parse_image(message)

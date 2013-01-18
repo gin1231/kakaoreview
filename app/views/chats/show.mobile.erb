@@ -3,7 +3,7 @@
     <div class = "chat_list">
 
       <% if @chat.chatfile? %>
-        <%= html_maker(@chat.parse_file).html_safe %>
+        <%= html_maker(@chat.messages).html_safe %>
       <% end %>
     </div>
   </div>
