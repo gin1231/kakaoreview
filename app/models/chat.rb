@@ -152,9 +152,14 @@ class Chat
         end
       end
 
+      contentType = message_type(message)
+      if contentType == IMAGE
+        message = parse_image(message)
+      end
+
       hash = Hash.new
       hash.merge!(:message_type => type)
-      hash.merge!(:content => message_type(message), :message => parse_misc(message))
+      hash.merge!(:content => contentType, :message => parse_misc(message))
       hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
       hash.merge!(:message_time => time) unless time.nil?
       res << Message.new(hash)
@@ -173,7 +178,6 @@ class Chat
       TEXT
     end
   end
-
 
   def parse_file
     if self.parsed == false
@@ -196,6 +200,11 @@ class Chat
       self.save
     end
     self.messages
+  end
+
+  def parse_image(message)
+    filename = message.scan(/_talkm_.{10}_.{22}_.{6}[[:punct:]]jpg/)[0]
+    message.gsub!(filename, "<span class = 'messageImage'><img src ='/assets/uploaded/#{filename}'></span>")
   end
 
   def parse_misc(message)

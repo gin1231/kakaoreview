@@ -1,6 +1,5 @@
 body {
-  /*font-family: sans-serif;*/
-  font-family: '나눔고딕', '맑은 고딕', '굴림', sans-serif;
+  font-family: 'Apple SD Gothic Neo', '나눔고딕', '맑은 고딕', '굴림', sans-serif;
 }
 
 #loginScreen {
@@ -25,6 +24,13 @@ body {
   text-decoration:none;
   color:blue;
 
+}
+
+.messageImage img {
+  max-width:117px;
+  max-height:117px;
+  border-radius:7px;
+  vertical-align:inherit;
 }
 
 #loginButton input[type="submit"] {
@@ -255,7 +261,7 @@ body {
 .isMine .imageMessage{
   position:relative;
   z-index: 9;
-  padding:11px 13px 12px 14px;
+  padding:10px 10px 7px 9px;
   margin-right:5px;
 }
 
@@ -279,89 +285,3 @@ body {
   -o-border-image: url(pop_yellow.png) 13 18 15 15 fill repeat;
   border-style: solid;
 }
-
-
-
-/*.emoticon-01{ background-position: 0 0; width: 27px; height: 27px; } */
-/*.emoticon-02{ background-position: 0 -95px; width: 27px; height: 27px; } */
-/*.emoticon-03{ background-position: 0 -190px; width: 27px; height: 27px; } */
-/*.emoticon-04{ background-position: 0 -285px; width: 27px; height: 27px; } */
-/*.emoticon-05{ background-position: 0 -380px; width: 27px; height: 27px; } */
-/*.emoticon-06{ background-position: 0 -475px; width: 27px; height: 27px; } */
-/*.emoticon-07{ background-position: 0 -570px; width: 27px; height: 27px; } */
-/*.emoticon-08{ background-position: 0 -665px; width: 27px; height: 27px; } */
-/*.emoticon-09{ background-position: 0 -760px; width: 27px; height: 27px; } */
-/*.emoticon-10{ background-position: 0 -855px; width: 27px; height: 27px; } */
-/*.emoticon-11{ background-position: 0 -950px; width: 27px; height: 27px; } */
-/*.emoticon-12{ background-position: 0 -1027px; width: 27px; height: 27px; } */
-/*.emoticon-13{ background-position: 0 -1140px; width: 27px; height: 27px; } */
-/*.emoticon-14{ background-position: 0 -1235px; width: 27px; height: 27px; } */
-/*.emoticon-15{ background-position: 0 -1330px; width: 27px; height: 27px; } */
-/*.emoticon-16{ background-position: 0 -1425px; width: 27px; height: 27px; } */
-/*.emoticon-17{ background-position: 0 -1520px; width: 27px; height: 27px; } */
-/*.emoticon-18{ background-position: 0 -1615px; width: 27px; height: 27px; } */
-/*.emoticon-19{ background-position: 0 -1710px; width: 27px; height: 27px; } */
-/*.emoticon-20{ background-position: 0 -1805px; width: 27px; height: 27px; } */
-/*.emoticon-21{ background-position: 0 -1900px; width: 27px; height: 27px; } */
-/*.emoticon-22{ background-position: -95px 0; width: 27px; height: 27px; } */
-/*.emoticon-23{ background-position: -95px -95px; width: 27px; height: 27px; } */
-/*.emoticon-24{ background-position: -95px -190px; width: 27px; height: 27px; } */
-/*.emoticon-25{ background-position: -95px -285px; width: 27px; height: 27px; } */
-/*.emoticon-26{ background-position: -95px -380px; width: 27px; height: 27px; } */
-/*.emoticon-27{ background-position: -95px -475px; width: 27px; height: 27px; } */
-/*.emoticon-28{ background-position: -95px -570px; width: 27px; height: 27px; } */
-/*.emoticon-29{ background-position: -95px -665px; width: 27px; height: 27px; } */
-/*.emoticon-30{ background-position: -95px -760px; width: 27px; height: 27px; } */
-/*.emoticon-31{ background-position: -95px -855px; width: 27px; height: 27px; } */
-/*.emoticon-32{ background-position: -95px -950px; width: 27px; height: 27px; } */
-/*.emoticon-33{ background-position: -95px -1027px; width: 27px; height: 27px; } */
-/*.emoticon-34{ background-position: -95px -1140px; width: 27px; height: 27px; } */
-/*.emoticon-35{ background-position: -95px -1235px; width: 27px; height: 27px; } */
-/*.emoticon-36{ background-position: -95px -1330px; width: 27px; height: 27px; } */
-/*.emoticon-37{ background-position: -95px -1425px; width: 27px; height: 27px; } */
-/*.emoticon-38{ background-position: -95px -1520px; width: 27px; height: 27px; } */
-/*.emoticon-39{ background-position: -95px -1615px; width: 27px; height: 27px; } */
-/*.emoticon-40{ background-position: -95px -1710px; width: 27px; height: 27px; } */
-/*.emoticon-41{ background-position: -95px -1805px; width: 27px; height: 27px; } */
-/*.emoticon-42{ background-position: -95px -1900px; width: 27px; height: 27px; } */
-/*.emoticon-43{ background-position: -190px 0; width: 27px; height: 27px; } */
-/*.emoticon-44{ background-position: -190px -95px; width: 27px; height: 27px; } */
-/*.emoticon-45{ background-position: -190px -190px; width: 27px; height: 27px; } */
-/*.emoticon-46{ background-position: -190px -285px; width: 27px; height: 27px; } */
-/*.emoticon-47{ background-position: -190px -380px; width: 27px; height: 27px; } */
-/*.emoticon-48{ background-position: -190px -475px; width: 27px; height: 27px; } */
-/*.emoticon-49{ background-position: -190px -570px; width: 27px; height: 27px; } */
-/*.emoticon-50{ background-position: -190px -665px; width: 27px; height: 27px; } */
-/*.emoticon-51{ background-position: -190px -760px; width: 27px; height: 27px; } */
-/*.emoticon-52{ background-position: -190px -855px; width: 27px; height: 27px; } */
-/*.emoticon-53{ background-position: -190px -950px; width: 27px; height: 27px; } */
-/*.emoticon-54{ background-position: -190px -1027px; width: 27px; height: 27px; } */
-/*.emoticon-55{ background-position: -190px -1140px; width: 27px; height: 27px; } */
-/*.emoticon-56{ background-position: -190px -1235px; width: 27px; height: 27px; } */
-/*.emoticon-57{ background-position: -190px -1330px; width: 27px; height: 27px; } */
-/*.emoticon-58{ background-position: -190px -1425px; width: 27px; height: 27px; } */
-/*.emoticon-59{ background-position: -190px -1520px; width: 27px; height: 27px; } */
-/*.emoticon-60{ background-position: -190px -1615px; width: 27px; height: 27px; } */
-/*.emoticon-61{ background-position: -190px -1710px; width: 27px; height: 27px; } */
-/*.emoticon-62{ background-position: -190px -1805px; width: 27px; height: 27px; } */
-/*.emoticon-63{ background-position: -190px -1900px; width: 27px; height: 27px; } */
-/*.emoticon-64{ background-position: -285px 0; width: 27px; height: 27px; } */
-/*.emoticon-65{ background-position: -285px -95px; width: 27px; height: 27px; } */
-/*.emoticon-66{ background-position: -285px -190px; width: 27px; height: 27px; } */
-/*.emoticon-67{ background-position: -285px -285px; width: 27px; height: 27px; } */
-/*.emoticon-68{ background-position: -285px -380px; width: 27px; height: 27px; } */
-/*.emoticon-69{ background-position: -285px -475px; width: 27px; height: 27px; } */
-/*.emoticon-70{ background-position: -285px -570px; width: 27px; height: 27px; } */
-/*.emoticon-71{ background-position: -285px -665px; width: 27px; height: 27px; } */
-/*.emoticon-72{ background-position: -285px -760px; width: 27px; height: 27px; } */
-/*.emoticon-73{ background-position: -285px -855px; width: 27px; height: 27px; } */
-/*.emoticon-74{ background-position: -285px -950px; width: 27px; height: 27px; } */
-/*.emoticon-75{ background-position: -285px -1027px; width: 27px; height: 27px; } */
-/*.emoticon-76{ background-position: -285px -1140px; width: 27px; height: 27px; } */
-/*.emoticon-77{ background-position: -285px -1235px; width: 27px; height: 27px; } */
-/*.emoticon-78{ background-position: -285px -1330px; width: 27px; height: 27px; } */
-/*.emoticon-79{ background-position: -285px -1425px; width: 27px; height: 27px; } */
-/*.emoticon-80{ background-position: -285px -1520px; width: 27px; height: 27px; } */
-/*.emoticon-81{ background-position: -285px -1615px; width: 27px; height: 27px; } */
-/*.emoticon-82{ background-position: -285px -1710px; width: 27px; height: 27px; } */
-/*.emoticon {background-image: url(emoticons.png);}*/

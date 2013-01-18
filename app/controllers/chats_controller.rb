@@ -9,7 +9,7 @@ class ChatsController < ApplicationController
       @chats = current_user.chats
     else
       #redirect_to new_user_session_path
-      @chats = User.find_by_id(1).chats
+      @chats = User.first.chats
     end
   end
 
