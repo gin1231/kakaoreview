@@ -54,12 +54,10 @@ class ChatsController < ApplicationController
   # POST /chats
   # POST /chats.json
   def create
-    @chat = Chat.new(params[:chat])
-    @chat.user = current_user
-    @chat.chat_type = Chat::UPLOADED
-      
+    @chat = Chat.create_chat(params[:chat], current_user, Chat::UPLOADED)
+
     respond_to do |format|
-      if @chat.save
+      if @chat
         format.html { redirect_to @chat, notice: 'Chat was successfully created.' }
         format.json { render json: @chat, status: :created, location: @chat }
       else

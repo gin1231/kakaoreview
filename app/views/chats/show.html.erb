@@ -7,9 +7,7 @@
 
 <div class = 'chatScreen'>
 	<div class = 'chat_list'>
-  <% if @chat.chatfile? %>
-    <%= html_maker(@chat.parse_file).html_safe %>
-	<% end %>
+    <%= html_maker(@chat.messages).html_safe %>
 	</div>
 </div>
 
