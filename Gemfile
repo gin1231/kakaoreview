@@ -4,12 +4,16 @@ gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'therubyracer'
+gem 'mongoid', "~>3.0.0"
+gem 'bson_ext'
 
-gem 'mysql2'
+#gem 'mysql2'
 gem 'thin'
 gem 'rails_admin'
 gem 'devise'
-gem 'paperclip'
+#gem 'paperclip'
+gem 'mongoid-paperclip', :require => "mongoid_paperclip"
 gem 'mail'
 
 # Gems used only for assets and not required

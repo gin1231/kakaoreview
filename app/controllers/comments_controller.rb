@@ -3,8 +3,9 @@ class CommentsController < ApplicationController
   def create
     @quote = Quote.find(params[:quote_id])
     @comment = Comment.new(params[:comment])
-    @comment.quote = @quote
     @comment.user = current_user
+
+    @comment.quote = @quote
 
     if @comment.save
       redirect_to quote_path(@quote)

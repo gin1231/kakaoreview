@@ -1,18 +1,35 @@
 #coding: utf-8
-class Chat < ActiveRecord::Base
+
+class Chat
   require 'uri'
+
+  include Mongoid::Document
+  include Mongoid::Timestamps::Created
+  include Mongoid::Timestamps::Updated
+  include Mongoid::Paperclip
+
+  #=== Fields
+  field :title, type: String
+  field :chatfile_file_name, type: String
+  field :chatfile_content_type, type: String
+  field :chatfile_file_size, type: Integer
+  field :chatfile_updated_at, type: DateTime
+  field :chat_type, type: Integer
+
+  field :parsed, type: Boolean, :default => false
+
+
   attr_accessible :title
   attr_accessible :chatfile
 
-  has_attached_file :chatfile
+  has_mongoid_attached_file :chatfile
 
 
   belongs_to :user, :inverse_of => :chats
-  has_many :messages
-  has_and_belongs_to_many :readers, :class_name => "User", :join_table => "users_readable_chats"
+  embeds_many :messages
+  #has_and_belongs_to_many :readers, :class_name => "User", :join_table => "users_readable_chats"
+  accepts_nested_attributes_for :messages
 
-  UPLOADED = 1
-  CREATED = 2
 
   scope :uploaded, where(:chat_type => UPLOADED)
   scope :created, where(:chat_type => CREATED)
@@ -22,11 +39,11 @@ class Chat < ActiveRecord::Base
     res = []
     parsed_date = ""
     f.each do |l|
-      if l == "\r\n"
-        next
-      end
+      next if l == "\r\n"
+
       if l.index('년').nil?
         # 사용자가 여러줄의 메시지를 보냈을 때
+        # TODO handling multiline message
         next
       end
       if l.index('년') && l.index('월') && l.index('일') && l.index(',').nil?
@@ -35,6 +52,8 @@ class Chat < ActiveRecord::Base
       end
       # split datetime and others
       s = l.index(',')
+      next if s.nil?
+      # TODO s.nil? is error
       datetime = l[0..s-1]
       info = l[s+2..-1]
 
@@ -75,13 +94,15 @@ class Chat < ActiveRecord::Base
       hash = Hash.new
       hash.merge!(:message_type => type)
       hash.merge!(:message => message)
+      hash.merge!(:content => message_type(message))
       hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
       if changed
-        hash.merge!(:date => parsed_date)
+        hash.merge!(:message_date => parsed_date)
       end
       hash.merge!(:message_time => time) unless time.nil?
 
-      res << hash
+      m = Message.new(hash)
+      res << m
     end
     res
   end
@@ -111,6 +132,7 @@ class Chat < ActiveRecord::Base
       end
 
       #parse date and set changed
+      #TODO date changed?
       cond = (type == UNKNOWN or type == MULTILINEMESSAGE)
       unless cond
         time = l.match(/오(후|전) \d{1,2}:\d{1,2}/).to_s
@@ -135,9 +157,8 @@ class Chat < ActiveRecord::Base
       hash.merge!(:content => message_type(message), :message => parse_misc(message))
       hash.merge!(:name => name, :isMine => name == "회원님") unless name.nil?
       hash.merge!(:message_time => time) unless time.nil?
-      res << hash
+      res << Message.new(hash)
     end
-    #self.messages.create(res)
     res
   end
 
@@ -155,21 +176,26 @@ class Chat < ActiveRecord::Base
 
 
   def parse_file
-    f = File.open(self.chatfile.path)
-    f = f.drop(5)
-    type = ANDROID
-    if f.first.match(',')
+    if self.parsed == false
+      f = File.open(self.chatfile.path)
+      f = f.drop(5)
       type = ANDROID
-    else
-      type = IOS
-    end
+      if f.first.match(',')
+        type = ANDROID
+      else
+        type = IOS
+      end
 
-    if type == ANDROID
-      res = parse_android(f)
-    else
-      res = parse_ios(f)
+      if type == ANDROID
+        res = parse_android(f)
+      else
+        res = parse_ios(f)
+      end
+      self.messages << res
+      self.parsed = true
+      self.save
     end
-    res
+    self.messages
   end
 
   def parse_misc(message)

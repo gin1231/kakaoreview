@@ -1,14 +1,17 @@
-class Comment
+class Rate
   include Mongoid::Document
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
 
   #=== Fields
-  field :content, type: String
+  field :like, type: Boolean
 
-
-  attr_accessible :content
-  
-  belongs_to :quote
+ 
+  embedded_in :quote
   belongs_to :user
+
+
+  scope :likes, where(:like => true)
+  scope :dislikes, where(:like => false)
+
 end

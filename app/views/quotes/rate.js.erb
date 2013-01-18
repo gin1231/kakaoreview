@@ -1,0 +1,7 @@
+<% if @result[:status] %>
+  $(".quote_like_<%= @quote.id %>").html("<%= @quote.rate.likes.length %>");
+  $(".quote_dislike_<%= @quote.id %>").html("<%= @quote.rate.dislikes.length %>");
+
+<% else %>
+  alert('<%= @result[:message] %>');
+<% end %>
