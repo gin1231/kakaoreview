@@ -10,7 +10,9 @@ Kakaoreview::Application.routes.draw do
       post :rate
     end
   end
-  resources :chats
+  resources :chats do
+    resources :parts
+  end
 	resources :emails
 
   match 'help' => 'main#help'

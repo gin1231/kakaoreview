@@ -13,6 +13,9 @@
 	</div>
 </div>
 
-<%= link_to 'Share', '#' %> | 
+<%= link_to_function 'Share', 'toggleRadio();' %> |
 <%= link_to 'Edit', edit_chat_path(@chat) %> |
 <%= link_to 'Back', chats_path %>
+
+<br>
+<%= link_to_function 'Shart Part!', "newPart('#{new_chat_part_path(:chat_id => @chat)}')" %>

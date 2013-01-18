@@ -1,0 +1,17 @@
+<h3>대화공유</h3>
+
+
+<div class = "chatScreen">
+  <div class = "chat_list">
+  <%= html_maker(@messages).html_safe %>
+  </div>
+</div>
+
+
+<div>
+  다음 대화를 공유하시겠습니까?
+  <p>
+  <%= button_to '공유', chat_parts_path(:chat_id => @chat, :start => params[:start], :end => params[:end])%>
+  <%= link_to '뒤로', chat_path(@chat) %>
+  </p>
+</div>

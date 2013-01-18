@@ -13,9 +13,6 @@ class ChatsController < ApplicationController
     end
   end
 
-  def set_user
-    
-  end
 
   public
   # GET /chats
@@ -99,4 +96,6 @@ class ChatsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 end

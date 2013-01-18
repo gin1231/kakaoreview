@@ -129,6 +129,16 @@ body {
   float:left;
 }
 
+.radioDiv {
+  float:left;
+  display: none;
+}
+
+.radioDiv input {
+  margin: 5px;
+}
+
+
 .profilePicContainer {
   width:32px;
   height:33px;
