@@ -2,7 +2,16 @@
 
 <p>
   <b>Title:</b>
-  <%= @chat.title %>
+  <div class = 'chatTitle'>
+    <span id = 'chatTitleText'><%= @chat.title %></span>
+    <%= link_to_function 'Edit', 'toggleTitle()' %>
+  </div>
+  <div class = 'chatTitle transparent'>
+    <%= form_for(@chat, :remote => true) do |c| %>
+      <%= c.text_field :title %>
+      <%= c.submit '수정' %>
+    <% end %>
+  </div>
 </p>
 
 <div class = 'chatScreen'>
@@ -12,7 +21,6 @@
 </div>
 
 <%= link_to_function 'Share', 'toggleRadio();' %> |
-<%= link_to 'Edit', edit_chat_path(@chat) %> |
 <%= link_to 'Back', chats_path %>
 
 <br>

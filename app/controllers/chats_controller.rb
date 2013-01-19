@@ -46,11 +46,6 @@ class ChatsController < ApplicationController
     end
   end
 
-  # GET /chats/1/edit
-  def edit
-    @chat = Chat.find(params[:id])
-  end
-
   # POST /chats
   # POST /chats.json
   def create
@@ -71,16 +66,7 @@ class ChatsController < ApplicationController
   # PUT /chats/1.json
   def update
     @chat = Chat.find(params[:id])
-
-    respond_to do |format|
-      if @chat.update_attributes(params[:chat])
-        format.html { redirect_to @chat, notice: 'Chat was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @chat.errors, status: :unprocessable_entity }
-      end
-    end
+    @chat.update_attributes(params[:chat])
   end
 
   # DELETE /chats/1

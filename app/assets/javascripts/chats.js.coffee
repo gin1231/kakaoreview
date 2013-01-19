@@ -1,4 +1,8 @@
+#edit
+window.toggleTitle = () ->
+  $(".chatTitle").toggle()
 
+#share
 window.toggleRadio = () ->
   $(".radioDiv").toggle()
 

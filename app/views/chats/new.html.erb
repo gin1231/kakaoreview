@@ -31,12 +31,14 @@
 
 <h3>메일로 올리기</h3>
 <div>
-  USERNAME@DOMAIN.COM
+  카카오톡의 내보내기 기능을 이용하여, <%= current_user.username %>@DOMAIN.COM으로 대화내역을 보내주세요! 자동으로 저장됩니다.
 </div>
 
 <h1>대화 만들기</h1>
 <div>
-  FORM HERE
+  <%= form_for(@chat) do |f| %>
+    
+  <% end %>
 </div>
 
 <%= link_to 'Back', chats_path %>
