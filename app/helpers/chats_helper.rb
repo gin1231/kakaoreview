@@ -11,6 +11,7 @@ module ChatsHelper
         when MESSAGE
           html << "<div class = 'messageContainer'>"
           html << radio_maker(m)
+          html << edit_maker(m)
           if m.isMine
             html << "<div class = 'messageDiv isMine'>"
             html << message_maker(m) << "<div class = 'time'>#{m.message_time}</div>"
@@ -28,6 +29,11 @@ module ChatsHelper
 
   def radio_maker(m)
     "<div class='radioDiv'><input type='radio' name='start' value='#{m.id}' /><input type='radio' name='end' value='#{m.id}'/></div>"
+  end
+
+  def edit_maker(m)
+    "<div class='editDiv'>#{ button_to '삭제', chat_message_path(:chat_id => m.chat, :id => m), :remote => true, :method => :delete }</div>"
+
   end
 
   def message_maker(m)
@@ -52,6 +58,7 @@ module ChatsHelper
     "
       <div class = 'infoContainer'>
       #{radio_maker(m)}
+      #{edit_maker(m)}
         <div class = 'infoInnerContainer'>
           <div class = 'infoLeftContainer'>
             <div class = 'infoLeftCol'></div>

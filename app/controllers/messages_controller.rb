@@ -39,7 +39,14 @@ class MessagesController < ApplicationController
   
   #async action
   def destroy
-
+    @message = @chat.messages.where(:id => params[:id]).first
+    
+    if @message.destroy
+      @result = {:status => true}
+    else
+      @result = {:status => false, :message => '삭제 과정에서 오류가 발생했습니다.'}
+    end
+    
   end
 
 end

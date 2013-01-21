@@ -138,6 +138,10 @@ body {
   margin: 5px;
 }
 
+.editDiv {
+  float:left;
+  display: none;
+}
 
 .profilePicContainer {
   width:32px;

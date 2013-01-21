@@ -1,0 +1,4 @@
+<% if @result[:status] %>
+  $(".chat_list").html("<%= escape_javascript(html_maker(@chat.messages).html_safe) %>");
+  toggleEdit();
+<% end %>
