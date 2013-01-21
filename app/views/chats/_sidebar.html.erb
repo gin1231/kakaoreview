@@ -1,7 +1,4 @@
 <ul class="nav nav-list">
-  <% @chats.each do |chat| %>
-  <li><%= link_to chat.title, chat %></li>
-  <% end %>
   <li class="nav-header">업로드한 대화</li>
   <% @chats.uploaded.each do |chat| %>
   <li><%= link_to chat.title, chat %></li>

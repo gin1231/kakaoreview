@@ -19,6 +19,18 @@
     <%= html_maker(@chat.messages).html_safe %>
 	</div>
 </div>
+<div>
+  <% if @chat.chat_type == CREATED %>
+    <%= form_for(@message, :url => chat_messages_path(@chat), :remote => true) do |f| %>
+      <%= f.select :message_type, Message.option_for_messagetype %>
+      <%= f.select :content, Message.option_for_content %>
+      <%= f.select :isMine, Message.option_for_ismine %>
+      <%= f.text_field :name, :placeholder => '이름' %>
+      <%= f.text_field :message, :placeholder => '내용' %>
+      <%= f.submit '작성' %>
+    <% end %>
+  <% end %>
+</div>
 
 <%= link_to_function 'Share', 'toggleRadio();' %> |
 <%= link_to 'Back', chats_path %>

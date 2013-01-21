@@ -11,6 +11,7 @@
   </p>
   <%= link_to 'Like', rate_quote_path(:like => true), :method => :post, :remote => true %> <span class="quote_like_<%= @quote.id %>"><%= @quote.rate.likes.length %></span>
   <%= link_to 'Dislike', rate_quote_path(:like => false), :method => :post, :remote => true %> <span class="quote_dislike_<%= @quote.id %>"><%= @quote.rate.dislikes.length %></span>
+  <%= link_to '공유하기', '#' %>
 </div>
 
 <div>

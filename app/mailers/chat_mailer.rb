@@ -18,8 +18,8 @@ class ChatMailer < ActionMailer::Base
         file.original_filename = att.filename
         file.content_type = att.mime_type
 
-        chat_params = {:title => message.subject, :chatfile => file}
-        new_chat = Chat.create_chat(chat_params, user, Chat::UPLOADED)
+        chat_params = {:title => message.subject, :chatfile => file, :chat_type => Chat::UPLOADED}
+        new_chat = Chat.create_chat(chat_params, user)
       else
         file = StringIO.new(att.body.decoded)
         file.class.class_eval {attr_accessor :original_filename, :content_type}

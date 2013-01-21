@@ -28,6 +28,7 @@ class ChatsController < ApplicationController
   # GET /chats/1.json
   def show
     @chat = Chat.find(params[:id])
+    @message = Message.new
 
     respond_to do |format|
       format.html # show.html.erb
@@ -49,7 +50,7 @@ class ChatsController < ApplicationController
   # POST /chats
   # POST /chats.json
   def create
-    @chat = Chat.create_chat(params[:chat], current_user, Chat::UPLOADED)
+    @chat = Chat.create_chat(params[:chat], current_user)
 
     respond_to do |format|
       if @chat

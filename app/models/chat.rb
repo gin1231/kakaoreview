@@ -20,6 +20,7 @@ class Chat
 
 
   attr_accessible :title
+  attr_accessible :chat_type
   attr_accessible :chatfile
 
   has_mongoid_attached_file :chatfile
@@ -39,13 +40,14 @@ class Chat
 
 
   ### CRUD
-  def self.create_chat chat_params, user, chat_type
+  def self.create_chat chat_params, user
     new_chat = Chat.new(chat_params)
     new_chat.user = user
-    new_chat.chat_type = chat_type
     
     if new_chat.save
-      new_chat.parse_file
+      if chat_params[:chatfile]
+        new_chat.parse_file
+      end
       return new_chat
     else
       return
@@ -191,11 +193,11 @@ class Chat
   end
 
   def message_type(message)
-    if message.match(/[0-9a-zA-Z-=_]*[[:punct:]]jpg/)
+    if message.match(/[0-9a-zA-Z\-=_]*[[:punct:]]jpg/)
       IMAGE
-    elsif message.match(/[0-9a-zA-Z-=_]*[[:punct:]]m4a/)
+    elsif message.match(/[0-9a-zA-Z\-=_]*[[:punct:]]m4a/)
       AUDIO
-    elsif message.match(/[0-9a-zA-Z-=_]*[[:punct:]]mp4/)
+    elsif message.match(/[0-9a-zA-Z\-=_]*[[:punct:]]mp4/)
       VIDEO
     else
       TEXT

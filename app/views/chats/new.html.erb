@@ -15,6 +15,7 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :chat_type, :value => UPLOADED %>
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -36,9 +37,33 @@
 
 <h1>대화 만들기</h1>
 <div>
+  재미있는 이야기를 카카오톡 대화처럼 만들 수  있습니다!
+</div>
+
+<div>
   <%= form_for(@chat) do |f| %>
-    
+  <% if @chat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chat.errors.count, "error") %> prohibited this chat from being saved:</h2>
+
+      <ul>
+      <% @chat.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
+
+  <%= f.hidden_field :chat_type, :value => CREATED %>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>
+
 </div>
 
 <%= link_to 'Back', chats_path %>

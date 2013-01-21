@@ -1,0 +1,6 @@
+<% if @result[:status] %>
+  $(".chat_list").html("<%= escape_javascript(html_maker(@chat.messages).html_safe) %>");
+
+  $("#message_message").val("");
+  $("#message_isMine").focus();
+<% end %>

@@ -12,6 +12,7 @@ Kakaoreview::Application.routes.draw do
   end
   resources :chats do
     resources :parts
+    resources :messages
   end
 	resources :emails
 
