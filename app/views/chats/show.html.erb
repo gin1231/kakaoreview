@@ -32,9 +32,6 @@
   <% end %>
 </div>
 
-<%= link_to_function '공유', 'toggleRadio();' %> |
+<%= link_to_function '공유', "toggleShare('#{@chat.id}');" %> |
 <%= link_to_function '편집', 'toggleEdit();' %> | 
 <%= link_to '뒤로', chats_path %>
-
-<br>
-<%= link_to_function '선택부분 공유하기', "newPart('#{new_chat_part_path(:chat_id => @chat)}')" %>

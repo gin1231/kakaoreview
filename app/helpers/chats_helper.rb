@@ -9,8 +9,7 @@ module ChatsHelper
         when DATE, INVITATION, LEAVE
           html << info_maker(m)
         when MESSAGE
-          html << "<div class = 'messageContainer'>"
-          html << radio_maker(m)
+          html << "<div class = 'messageContainer' id = 'message_#{m.id}'>"
           html << edit_maker(m)
           if m.isMine
             html << "<div class = 'messageDiv isMine'>"
@@ -25,10 +24,6 @@ module ChatsHelper
       end
     end
     html
-  end
-
-  def radio_maker(m)
-    "<div class='radioDiv'><input type='radio' name='start' value='#{m.id}' /><input type='radio' name='end' value='#{m.id}'/></div>"
   end
 
   def edit_maker(m)
@@ -56,8 +51,7 @@ module ChatsHelper
 
   def info_maker(m)
     "
-      <div class = 'infoContainer'>
-      #{radio_maker(m)}
+      <div class = 'infoContainer' id = 'message_#{m.id}'>
       #{edit_maker(m)}
         <div class = 'infoInnerContainer'>
           <div class = 'infoLeftContainer'>

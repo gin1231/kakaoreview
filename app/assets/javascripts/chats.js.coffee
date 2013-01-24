@@ -33,20 +33,69 @@ window.toggleEdit = () ->
   $(".editDiv").toggle()
 
 #share
-window.toggleRadio = () ->
-  $(".radioDiv").toggle()
+start_div = null
+end_div = null
 
-window.newPart = (new_path) ->
-  start_div = $('input[name=start]:checked')
-  end_div = $('input[name=end]:checked')
+chat_id = null
 
-  if (start_div.length == 0) or (end_div.length == 0)
-    alert('시작지점과 끝지점을 선택해주세요')
+window.toggleShare = (id) ->
+  message_divs = $(".infoContainer, .messageContainer")
+  if id
+    chat_id = id
+    toggleShareStart(id)
   else
-    start = start_div.val()
-    end = end_div.val()
+    message_divs.off()
+    message_divs.css('background-color', '')
+    chat_id = null
+
+
+toggleShareStart = () ->
+  alert('시작지점을 선택해주세요')
+  start_div = null
+  end_div = null
+  message_divs = $(".infoContainer, .messageContainer")
+  message_divs.on("mouseenter", (event) ->
+    $(this).css('background-color', '#ecc')
+    $(this).click( () ->
+      start_div = $(this)
+      toggleShareEnd()
+    )
+  )
+  message_divs.on("mouseleave", (event) ->
+    $(this).css('background-color', '')
+  )
+  return
+
+toggleShareEnd = () ->
+  alert('끝지점을 선택해주세요')
+  message_divs = $(".infoContainer, .messageContainer")
+  message_divs.off()
+  message_divs.on("mouseenter", (event) ->
+    $(this).css('background-color', '#cec')
+    $(this).click( () ->
+      end_div = $(this)
+      message_divs.css('background-color', '')
+      newPart()
+    )
+  )
+  message_divs.on("mouseleave", (event) ->
+    $(this).css('background-color', '')
+  )
+  return
+
+newPart = () ->
+  message_divs = $(".infoContainer, .messageContainer")
+  message_divs.off()
+  if (start_div == null) or (end_div == null)
+    alert('잘못된 접근입니다')
+  else
+    start = start_div.attr("id").split("_")[1]
+    end = end_div.attr("id").split("_")[1]
 
     if start > end
       alert('시작지점이 더 앞이어야 합니다')
+      toggleShareEnd()
     else
-      $.colorbox({href: new_path + "?start=" + start + "&end=" + end})
+      $.colorbox({href: "/chats/" + chat_id + "/parts/new?start=" + start + "&end=" + end})
+      toggleShare()
+  return
