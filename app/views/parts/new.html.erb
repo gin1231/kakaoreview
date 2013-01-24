@@ -7,11 +7,17 @@
   </div>
 </div>
 
-
+<%= @full_url %>
 <div>
   다음 대화를 공유하시겠습니까?
   <p>
-  <%= button_to '공유', chat_parts_path(:chat_id => @chat, :start => params[:start], :end => params[:end])%>
+  <%= form_for(@quote, :url => chat_parts_path(:chat_id => @chat, :start => params[:start], :end => params[:end])) do |f| %>
+    제목
+    <%= f.text_field :title %>
+    내용
+    <%= f.text_area :content %>
+    <%= f.submit '공유' %>
+  <% end %>
   <%= link_to '뒤로', chat_path(@chat) %>
   </p>
 </div>

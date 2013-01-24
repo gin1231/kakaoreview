@@ -11,21 +11,16 @@ class ChatMailer < ActionMailer::Base
     new_atts = Array.new
 
     message.attachments.each do |att|
+      file = StringIO.new(att.body.decoded)
+      file.class.class_eval {attr_accessor :original_filename, :content_type}
+      file.original_filename = att.filename
+      file.content_type = att.mime_type
+
       ext = att.filename[-4..-1]
       if ext == ".txt"
-        file = StringIO.new(att.body.decoded)
-        file.class.class_eval {attr_accessor :original_filename, :content_type}
-        file.original_filename = att.filename
-        file.content_type = att.mime_type
-
         chat_params = {:title => message.subject, :chatfile => file, :chat_type => Chat::UPLOADED}
         new_chat = Chat.create_chat(chat_params, user)
       else
-        file = StringIO.new(att.body.decoded)
-        file.class.class_eval {attr_accessor :original_filename, :content_type}
-        file.original_filename = att.filename
-        file.content_type = att.mime_type
-
         new_att =  Attachment.new(:att => file)
         if ext == ".jpg"
           new_att.att_type = IMAGE
