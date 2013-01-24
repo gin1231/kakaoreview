@@ -8,7 +8,7 @@ class PartsController < ApplicationController
     if ['index'].include? action_name
       'part'
     else
-      'frame'
+      false
     end
   end
 

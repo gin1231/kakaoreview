@@ -17,18 +17,6 @@ class QuotesController < ApplicationController
   end
 
   def create
-    ##FOR TEST
-    @quote = Quote.new(:title => '이거', 'content' => '내용임')
-    @quote.user = User.first
-    @quote.chat = Chat.first
-    ##FOR TEST
-
-    if @quote.save
-      redirect_to quote_path(@quote)
-    else
-      redirect_to quotes_path
-    end
-
   end
 
   def edit

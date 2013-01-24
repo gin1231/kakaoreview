@@ -49,4 +49,4 @@ window.newPart = (new_path) ->
     if start > end
       alert('시작지점이 더 앞이어야 합니다')
     else
-      window.location = new_path + "?start=" + start + "&end=" + end
+      $.colorbox({href: new_path + "?start=" + start + "&end=" + end})

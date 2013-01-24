@@ -11,5 +11,5 @@
  *= require_self
  *= require_tree .
  *= require bootstrap.min
- *= require lightbox/lightbox
+ *= require colorbox.css
  */
