@@ -52,8 +52,8 @@ module ChatsHelper
   def info_maker(m)
     "
       <div class = 'infoContainer' id = 'message_#{m.id}'>
-      #{edit_maker(m)}
         <div class = 'infoInnerContainer'>
+          #{edit_maker(m)}
           <div class = 'infoLeftContainer'>
             <div class = 'infoLeftCol'></div>
             <div class = 'info'> #{m.message} </div>

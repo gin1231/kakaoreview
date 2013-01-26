@@ -32,3 +32,14 @@
   }
 }
 
+ul.sideMenu {
+  position: fixed;
+  bottom: 30px;
+  left: 10px;
+
+  list-style: none;
+  li {
+    margin: 5px;
+    background: #eee;
+  }
+}

@@ -119,6 +119,10 @@ body {
   overflow:hidden;
 }
 
+.messageSelected {
+  background-color: #cec;
+}
+
 .messageDiv.isMine {
   max-width:65%;
   float:right;

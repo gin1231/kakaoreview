@@ -17,10 +17,12 @@ class Message
   H_DATE = {:id => DATE, :name => '날짜'}
   H_INVITATION = {:id => INVITATION, :name => '초대메시지'}
   H_LEAVE = {:id => LEAVE, :name => '퇴장메시지'}
-  H_UNKNOWN = {:id => UNKNOWN, :name => '자유메시지'}
-  TYPE_MESSAGE = [H_MESSAGE, H_DATE, H_INVITATION, H_LEAVE, H_UNKNOWN]
+  H_UNKNOWN = {:id => UNKNOWN, :name => 'UNKNOWN'}
+  H_FREE = {:id => FREE, :name => '자유메시지' }
 
-  
+  TYPE_MESSAGE = [H_MESSAGE, H_DATE, H_INVITATION, H_LEAVE, H_FREE]
+
+  WEEKDAYS = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"] 
 
   #=== Fields
   field :message_type, type: Integer
@@ -41,6 +43,14 @@ class Message
   
 
   #=== Methods
+  def self.current_date
+    cur_time = Time.now
+    day_of_week = cur_time.strftime("%w").to_i
+
+    date = cur_time.strftime("%Y년 %m월 %-d일 ") + WEEKDAYS[day_of_week]
+    date
+  end
+
   def self.option_for_ismine
     v = []
     TYPE_ISMINE.each do |e|
