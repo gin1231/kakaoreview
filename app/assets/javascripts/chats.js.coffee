@@ -4,9 +4,11 @@ edit_mode = false
 #show
 $(document).ready ->
   changeMessageForm()
+  changeMessageField()
   $("#message_message_type").change ->
     changeMessageForm()
-  $(".messageFieldName").change ->
+    changeMessageField()
+  $("#message_name, #message_name_by").on 'keypress keyup keydown', ->
     changeMessageField()
   return
 
@@ -17,7 +19,23 @@ changeMessageForm = () ->
   return
 
 changeMessageField = () ->
+  message_type = parseInt($("#message_message_type option:selected").val())
+  if message_type == 0
+    msg = "날짜!"
+    $("#message_message").attr("disabled", true)
+  else if message_type == 3
+    msg = $("#message_name_by").val() + "님이 " + $("#message_name").val() + "님을 초대했습니다."
+    $("#message_message").attr("disabled", true)
+  else if message_type == 4
+    msg = $("#message_name").val() + "님이 퇴장했습니다."
+    $("#message_message").attr("disabled", true)
+  else
+    $("#message_message").attr("disabled", false)
+
+  $("#message_message").val(msg)
   return
+
+
 
 
 window.toTop = () ->

@@ -25,28 +25,15 @@
       <%= f.select :message_type, Message.option_for_messagetype %>
 
       <div class="messageFieldType1 messageField">
-        <%= select :M1, :content, Message.option_for_content %>
-        <%= select :M1, :isMine, Message.option_for_ismine %>
-        <%= text_field :M1, :name, :placeholder => '이름' %>
-        <%= text_field :M1, :message, :placeholder => '내용' %>
-      </div>
-      <div class="messageFieldType0 messageField">
-        <%= select :M0, :content, Message.option_for_content %>
-        <%= text_field :M0, :message, :placeholder => '내용', :value => Message.current_date  %>
+        <%= f.select :content, Message.option_for_content %>
+        <%= f.select :isMine, Message.option_for_ismine %>
       </div>
       <div class="messageFieldType3 messageField">
-        <%= select :M3, :content, Message.option_for_content %>
-        <%= select :M3, :isMine, Message.option_for_ismine %>
-        <%= text_field :M3, :name_from, :class => 'messageFieldName', :placeholder => '사람A' %>
-        <%= text_field :M3, :name_to, :class => 'messageFieldName', :placeholder => '사람B' %>
-        <%= text_field :M3, :message, :placeholder => '내용', :value => '사람A님이 사람B님을 초대받은 사람을 초대했습니다.' %>
+        <%= f.text_field :name_by, :class => 'messageFieldName', :placeholder => '초대한 사람' %>
       </div>
-      <div class="messageFieldType4 messageField">
-        <%= select :M4, :content, Message.option_for_content %>
-        <%= select :M4, :isMine, Message.option_for_ismine %>
-        <%= text_field :M4, :name, :class => 'messageFieldName', :placeholder => '사람A' %>
-        <%= text_field :M4, :message, :placeholder => '내용', :value => '사람A님이 퇴장했습니다.' %>
-      </div>
+
+      <%= f.text_field :name, :placeholder => '이름' %>
+      <%= f.text_field :message, :placeholder => '내용' %>
 
       <%= f.submit '작성' %>
     <% end %>

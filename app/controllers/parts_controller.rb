@@ -35,7 +35,7 @@ class PartsController < ApplicationController
     full_url = "#{root_url}#{url}"
  
     if Rails.env.development?
-      res = `xvfb-run --server-args="-screen 0, 360x240x24" cutycapt --url='http://m.naver.com' --out='#{file_path}' --max-wait=5000`
+      res = `xvfb-run --server-args="-screen 0, 360x240x24" cutycapt --url='http://choco.wafflestudio.net' --out='#{file_path}' --max-wait=35000`
       file = File.open(file_path)
     else
       res = `xvfb-run --server-args="-screen 0, 360x240x24" cutycapt --url='http://choco.wafflestudio.net:2226' --out='#{file_path}' --max-wait=5000`

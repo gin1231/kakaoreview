@@ -29,6 +29,8 @@ class Message
   field :message, type: String
   field :content, type: Integer
   field :name, type: String
+  field :name_by, type: String
+
   field :isMine, type: Boolean
   field :message_date, type: String
   field :message_time, type: String
